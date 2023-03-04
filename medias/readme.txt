@@ -1,0 +1,3 @@
+ATTENTION, les images des médias utilisés dans cet exervice peuvent représenter des personnes et des photos de biens réels.
+Faute de droit d'usage suffisant, il est donc strictement interdit de les utilsier en dehors du cadre stricte de la pédagogie et du module devWeb et en aucun cas à mettre en ligne sur un serveur web dont l'accès serait public. Dans tous les cas, vous êtes responsable de la mauvaise utilisation de ces médias.
+JLH
