@@ -37,95 +37,56 @@
         </div>
     </div>
 
-    <div class="row mt-2 mx-0">
-        <div class="col-4">
+    <div class="row mt-2 mx-0 h-100">
+        <div class="col-4 h-100">
             One of three columns
         </div>
-        <div class="col-8">
-            <div class="d-flex justify-content-center">
-                <div class="card mx-2" style="width: 18rem;">
-                    <img class="card-img-top" src="../medias/maréiel/objectif.jpg" alt="Card image cap">
-                    <div class="card-body w-100">
-                        <div class="d-flex justify-content-center text-secondary">
-                            <h5>Objectif</h5>
-                        </div>
-                        <div class="d-flex justify-content-center">
-                            <h4>NSTAB</h4>
-                        </div>
-                        <div class="d-flex justify-content-center">
-                            <h4>180 $</h4>
-                            <h5 class="ml-4 text-secondary" style="text-decoration: line-through;">200 $</h5>
-                        </div>
-                        <hr/>
-                        <div class="d-flex justify-content-center">
-                            <button class="btn btn-outline-secondary bg-white input-border icon" type="button">
-                            <i class="fa fa-heart"></i>
-                            </button>
-                            <button class="btn btn-outline-secondary bg-white input-border icon mx-2" type="button">
-                            <i class="fa fa-cart-plus"></i>
-                            </button>
-                            <?php include './composants/étoiles.php'; ?>
-                        </div>
-                    </div>
-                </div>
-                <div class="card mx-2" style="width: 18rem;">
-                    <img class="card-img-top" src="../medias/maréiel/objectif.jpg" alt="Card image cap">
-                    <div class="card-body w-100">
-                        <div class="d-flex justify-content-center text-secondary">
-                            <h5>Objectif</h5>
-                        </div>
-                        <div class="d-flex justify-content-center">
-                            <h4>NSTAB</h4>
-                        </div>
-                        <div class="d-flex justify-content-center">
-                            <h4>180 $</h4>
-                            <h5 class="ml-4 text-secondary" style="text-decoration: line-through;">200 $</h5>
-                        </div>
-                        <hr/>
-                        <div class="d-flex justify-content-center">
-                            <button class="btn btn-outline-secondary bg-white input-border icon" type="button">
-                            <i class="fa fa-heart"></i>
-                            </button>
-                            <button class="btn btn-outline-secondary bg-white input-border icon mx-2" type="button">
-                            <i class="fa fa-cart-plus"></i>
-                            </button>
-                            <?php include './composants/étoiles.php'; ?>
+        <div class="col-8 h-100">
+            <div class="d-flex flex-wrap justify-content-start h-100">
+                <?php
+                    require_once '../model/produit.php';
+                    $produits = array();
+                    // faire requête sql; => $produits = resultat de la requête
+                    $produits[] = new Produit(0, 1222, "nanone", 1);
+                    $produits[] = new Produit(1, 1287, "pixel", 0.5);
+                    $produits[] = new Produit(2, 3244, "hp", 0.9);
+                    $produits[] = new Produit(3, 100, "asus", 0.2);
+                    $produits[] = new Produit(4, 5400, "apple", 0.8);
+                ?>
+
+                <?php foreach($produits as $produit): ?>
+                    <div class="card mx-2 my-2" style="width: 18rem;">
+                        <img class="card-img-top" src="../medias/maréiel/objectif.jpg" alt="Card image cap">
+                        <div class="card-body w-100">
+                            <div class="d-flex justify-content-center text-secondary">
+                                <h5><?php echo $produit->nom; ?></h5>
+                            </div>
+                            <div class="d-flex justify-content-center">
+                                <h4>NSTAB</h4>
+                            </div>
+                            <div class="d-flex justify-content-center">
+                                <h4><?php echo $produit->prix * $produit->reduction?> $</h4>
+                                <h5 class="ml-4 text-secondary" style="text-decoration: line-through;"><?php echo $produit->prix?> $</h5>
+                            </div>
+                            <hr/>
+                            <div class="d-flex justify-content-center">
+                                <button class="btn btn-outline-secondary bg-white input-border icon" type="button">
+                                <i class="fa fa-heart"></i>
+                                </button>
+                                <button class="btn btn-outline-secondary bg-white input-border icon mx-2" type="button">
+                                <i class="fa fa-cart-plus"></i>
+                                </button>
+                                <?php include './composants/étoiles.php'; ?>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="card mx-2" style="width: 18rem;">
-                    <img class="card-img-top" src="../medias/maréiel/objectif.jpg" alt="Card image cap">
-                    <div class="card-body w-100">
-                        <div class="d-flex justify-content-center text-secondary">
-                            <h5>Objectif</h5>
-                        </div>
-                        <div class="d-flex justify-content-center">
-                            <h4>NSTAB</h4>
-                        </div>
-                        <div class="d-flex justify-content-center">
-                            <h4>180 $</h4>
-                            <h5 class="ml-4 text-secondary" style="text-decoration: line-through;">200 $</h5>
-                        </div>
-                        <hr/>
-                        <div class="d-flex justify-content-center">
-                            <button class="btn btn-outline-secondary bg-white input-border icon" type="button">
-                            <i class="fa fa-heart"></i>
-                            </button>
-                            <button class="btn btn-outline-secondary bg-white input-border icon mx-2" type="button">
-                            <i class="fa fa-cart-plus"></i>
-                            </button>
-                            <?php include './composants/étoiles.php'; ?>
-                        </div>
-                    </div>
-                </div>
+                <?php endforeach; ?>
             </div>
         </div>
-  </div>
-
-    
+    </div>
 
     <?php include './composants/footer.php'; ?>
-    </main>
 </body>
 
 </html>
+

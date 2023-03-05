@@ -1,43 +1,48 @@
-.input-border{
+.input-border {
     border-radius: 30px;
 }
 
-.font-family-messiri{
-    font-family: 'El Messiri', sans-serif;;
+.font-family-messiri {
+    font-family: 'El Messiri', sans-serif;
 }
 
-.icon{
+.icon {
     min-width: 50px;
 }
 
-.icon:hover{
+.icon:hover {
     color: blue;
 }
 
-.sub-nav-color{
+.sub-nav-color {
     background-color: lightgrey;
 }
 
-.text-card-description{
+.text-card-description {
     font-size: 1.7em;
 }
 
-.body-background{
+.body-background {
     background-color: rgb(201, 200, 200);
 }
 
-.link-text{
+.link-text {
     font-size: 1.4em;
 }
 
-.background-dark{
+.background-dark {
     background-color: rgb(0, 0, 0);
 }
 
-.stroke{
+.stroke {
     text-decoration: line-through
 }
 
 .checked {
     color: orange;
-  }
+}
+
+.flex {
+    display: flex;
+    flex-wrap: wrap;
+}
