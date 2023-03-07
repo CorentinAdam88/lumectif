@@ -46,3 +46,24 @@
     display: flex;
     flex-wrap: wrap;
 }
+
+.f-poiretOne{
+font-family: 'Poiret One', cursive;
+}
+
+.f-genos{
+    font-family: 'genos', sans-serif;
+}
+
+.list-none{
+    list-style: none;
+    padding: 0px;
+}
+
+.fs-green{
+    color: #4B5C35;
+}
+
+.over-star:hover{
+    color: gold;
+}
