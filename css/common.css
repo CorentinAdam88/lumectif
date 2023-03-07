@@ -67,3 +67,7 @@ font-family: 'Poiret One', cursive;
 .over-star:hover{
     color: gold;
 }
+
+.car-h{
+    height: 500px;
+}

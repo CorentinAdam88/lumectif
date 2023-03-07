@@ -1,32 +1,12 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-<!--Font google-->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Genos:ital,wght@0,300;0,400;0,600;1,400&family=Poiret+One&display=swap" rel="stylesheet">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@500&display=swap" rel="stylesheet">
 
-<!--lien etoile-->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
-
-<!--===== CSS Bootsrap =====-->
-    <!--<link href="../dist/css/bootstrap.min.css" rel="stylesheet">-->
-<!--Lien scss-->
-    <link rel="stylesheet" href="../css/perso.css">
-
-<!--common css-->
-<link rel="stylesheet" href="../css/common.css">
-</head>
 <body>
 
 <!--===== navBar =====-->
+<?php
+include('composants/bibliotheque.php');
+htmlDebut("Lumectif-article");
+navBar();
+?>
 
 <!--===== carousel =====-->
 
