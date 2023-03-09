@@ -1,143 +1,69 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-<!--Font google-->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Genos:ital,wght@0,300;0,400;0,600;1,400&family=Poiret+One&display=swap" rel="stylesheet">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@500&display=swap" rel="stylesheet">
-
-<!--lien etoile-->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
-
-<!--===== CSS Bootsrap =====-->
-    <!--<link href="../dist/css/bootstrap.min.css" rel="stylesheet">-->
-<!--Lien scss-->
-    <link rel="stylesheet" href="../css/perso.css">
-
-<!--common css-->
-<link rel="stylesheet" href="../css/common.css">
-</head>
-<body>
-
 <!--===== navBar =====-->
+<?php
+include('composants/bibliotheque.php');
+htmlDebut("Lumectif-article");
+navBar();
+?>
+<body>
+    <section class="d-md-flex col-md-10 col-12 m-md-auto my-5 m-3 border-bottom border-4">
+        <article class="d-flex align-items-center col-md-8">
+            <ul class="list-unstyled col-1 border-end border-1 pe-2">
+                <li>
+                    <figure onclick="imageArt('camera01.jpg')">
+                        <img class="w-100" src="../medias/materiel/camera01.jpg"  alt="">
+                     </figure>
+                </li>
 
-<!--===== carousel =====-->
+                <li>
+                    <figure onclick="imageArt('objectif.jpg')">
+                        <img class="w-100" src="../medias/materiel/objectif.jpg"  alt="">
+                     </figure>
+                </li>
 
-<section class="bg-black text-light p-5 f-genos">
-    <h1>Le saviez vous ?</h1>
-    <p class="col-sm-16 col-md-6">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis accusantium natus laudantium quasi officia vero sapiente velit quod. Quas, nulla reprehenderit harum enim numquam ullam accusantium at recusandae animi in, a asperiores labore totam. Assumenda, a minima! Ipsam quisquam voluptate temporibus, voluptatum esse magni dolores nemo. Aliquam doloribus alias voluptates!</p>
-</section>
-
-<section class="d-sm-bloc d-md-flex">
-    <article class="col-sm-10 col-md-3 mx-5">
-        <div class="accordion" id="accordionExample">
-                    <!--section-->
-            <div class="accordion-item">
-              <h2 class="accordion-header" id="headingOne">
-                <button class="accordion-button f-poiretOne fs-3 bg-white fs-green" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                  Marque
-                </button>
-              </h2>
-              <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                  
-                    <!--Content-->
-                    <div class="d-flex align-items-center form-check-inline">
-                        <label class="form-check-label f-genos fs-4" for="inlineCheckbox1">PhotonInc</label>
-                        <input class="form-check-input mx-3" type="checkbox" id="inlineCheckbox1" value="option1">
-                    </div>
-
-                    <div class="d-flex align-items-center form-check-inline">
-                        <label class="form-check-label f-genos fs-4" for="inlineCheckbox1">Optix</label>
-                        <input class="form-check-input mx-3" type="checkbox" id="inlineCheckbox1" value="option1">
-                    </div>
-
-                    <div class="d-flex align-items-center form-check-inline">
-                        <label class="form-check-label f-genos fs-4" for="inlineCheckbox1">HMV</label>
-                        <input class="form-check-input mx-3" type="checkbox" id="inlineCheckbox1" value="option1">
-                    </div>
-
+                <li>
+                    <figure onclick="imageArt('light.jpeg')">
+                        <img class="w-100" src="../medias/materiel/light.jpeg" alt="">
+                     </figure>
+                </li>
+            </ul>
+            <figure class="col-md-12 col-sm-10 col-10 d-flex justify-content-center text-md-start">
+                <img id="imageCAT" class="col-md-8 col-lg-6 col-8 border border-1 p-2" src="" alt="">
+            </figure>
+            <script>
+                function imageArt (source){
+                    document.getElementById("imageCAT").src ="../medias/materiel/"+source+"";
+                    console.log(document.getElementById("imageCAT").src);
+                }
+            </script>
+        </article>
+        <article class="col-lg-7 col-md-5 justify-content-center text-md-start text-center">
+            <div class="f-genos">
+                <h2><a class="text-decoration-none text-muted m-0" href="#">camera</a></h2>
+                <h1 class="fs-h1 m-0">NSTAB</h1>
+                <div class="d-flex justify-content-md-start justify-content-center align-items-center">
+                    <h2 class="prix">180€</h2>
+                    <h2 class="text-muted ms-4 text-decoration-line-through">200€</h2>
                 </div>
-              </div>
+                <div class="d-flex">
+                    <div class="fas fa-star" style="color: gold">
+                    </div>
+                </div>
+                <button type="button" class="btn m-auto m-md-0 btn-success d-flex align-items-center f-genos fs-4 bg-green border-green">Ajouter au panier <span class="px-2"><a href="#"><img width="30px" src="../medias/icon/panier_blanc.svg" alt=""></a></span></button>
+                <ul class="list-unstyled f-genos fs-2 d-flex flex-column">
+                    <li>resolution: <span>HD</span></li>
+                    <li>Resolution du capteur: 20Mpx</li>
+                    <li>iso Max: 1600 iso</li>
+                    <li>vitesse d'obturation: 1/200s</li>
+                    <li>FPS max: 50</li>
+                    <li>image log: oui</li>
+                </ul>
+
             </div>
-
-            <!--section-->
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="headingTwo">
-                  <button class="accordion-button f-poiretOne fs-3 bg-white fs-green" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                    Prix
-                  </button>
-                </h2>
-                <div id="collapseTwo" class="accordion-collapse collapse show" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-                  <div class="accordion-body">
-                    
-                      <!--Content-->
-                      <div class="input-group mb-3">
-                        <span class="input-group-text">Prix max €</span>
-                        <input type="text" class="form-control" aria-label="Dollar amount (with dot and two decimal places)">
-                      </div>
-                      
-  
-                  </div>
-                </div>
-              </div>
-            <div class="accordion-item">
-              <h2 class="accordion-header" id="headingThree">
-                <button class="accordion-button collapsed f-poiretOne fs-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                  avis
-                </button>
-              </h2>
-              <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                  <div  id="note" class="d-flex justify-content-evenly">
-                  </div>
-                    <script>
-                        var content =""
-                        var etat = "Vide"
-                        for(i=0; i<5; i++){
-                            content = content+'<div class="fas fa-star over-star" onclick="note(this.id)" style="color:#4B5C35" id="'+i+'"></div>';
-                        }
-                        function note(etoileId){
-                                var note = eval(etoileId) + 1;
-                                if (typeof(evaluer) == "undefined"){
-                                    evaluer = false
-                                }
-                                if(evaluer == false){
-                                    evaluer = true
-                                    for(n=0; n<note; n++){
-                                        document.getElementById(String(n)).style.color = "gold";
-                                    }
-                            }
-                            else{
-                                    for (n=0; n<5; n++){
-                                        document.getElementById(String(n)).style.color = "#4B5C35";
-                                    }
-                                    for(n=0; n<note; n++){
-                                        document.getElementById(String(n)).style.color = "gold";
-                                    }
-                                    console.log(note)
-                                    
-                                }
-                        }
-                        var Contenu = document.getElementById("note");
-                        Contenu.innerHTML= content;
-                    </script>
-
-                </div>
-              </div>
-              <!--fin-->
-            </div>
-          </div>
-    </article>
-
-<!--==== articles =====-->
+        </article>
+    </section>
+    <section>
+        <h3 class="f-genos m-3 fs-1 fs-green fw-bold">Vous aimerez aussi:</h3>
+        <!--==== articles =====-->
 
     <article class="row justify-content-evenly col-lg-8 m-auto">
         <!--card-->
@@ -395,8 +321,5 @@
 
     </article>
 </section>
-
-<!--===== Script Bootsrap =====-->
-    <script src="../dist/js/bootstrap.min.js"></script>
 </body>
 </html>

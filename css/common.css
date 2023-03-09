@@ -63,6 +63,13 @@ font-family: 'Poiret One', cursive;
 .fs-green{
     color: #4B5C35;
 }
+.bg-green{
+    background-color: #4B5C35;
+}
+
+.border-green{
+    border-color: #4B5C35;
+}
 
 .over-star:hover{
     color: gold;
@@ -70,4 +77,13 @@ font-family: 'Poiret One', cursive;
 
 .car-h{
     height: 500px;
+}
+
+.prix{
+    color: #4B5C35;
+    font-size: 4em;
+}
+
+.fs-h1{
+    font-size: 4em;
 }

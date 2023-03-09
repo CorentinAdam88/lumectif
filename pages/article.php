@@ -1,5 +1,5 @@
 
-<body>
+
 
 <!--===== navBar =====-->
 <?php
@@ -7,7 +7,7 @@ include('composants/bibliotheque.php');
 htmlDebut("Lumectif-article");
 navBar();
 ?>
-
+<body>
 <!--===== carousel =====-->
 
 <section class="bg-black text-light p-5 f-genos">
@@ -17,6 +17,7 @@ navBar();
 
 <section class="d-sm-bloc d-md-flex">
     <article class="col-sm-10 col-md-3 mx-5">
+    <form class="m-0" id="formFab" action="article.php">
         <div class="accordion" id="accordionExample">
                     <!--section-->
             <div class="accordion-item">
@@ -29,25 +30,26 @@ navBar();
                 <div class="accordion-body">
                   
                     <!--Content-->
-                    <div class="d-flex align-items-center form-check-inline">
-                        <label class="form-check-label f-genos fs-4" for="inlineCheckbox1">PhotonInc</label>
-                        <input class="form-check-input mx-3" type="checkbox" id="inlineCheckbox1" value="option1">
-                    </div>
-
-                    <div class="d-flex align-items-center form-check-inline">
-                        <label class="form-check-label f-genos fs-4" for="inlineCheckbox1">Optix</label>
-                        <input class="form-check-input mx-3" type="checkbox" id="inlineCheckbox1" value="option1">
-                    </div>
-
-                    <div class="d-flex align-items-center form-check-inline">
-                        <label class="form-check-label f-genos fs-4" for="inlineCheckbox1">HMV</label>
-                        <input class="form-check-input mx-3" type="checkbox" id="inlineCheckbox1" value="option1">
-                    </div>
+                    <?php
+                    $connect = mysqli_connect('localhost','root','','lumectif') or die (mysqli_connect_error());
+                    $okcharset = mysqli_set_charset ($connect, 'utf8');
+                    $requete = "SELECT `nom_f`,`id_f` FROM `lum_fabricant`";
+                    $resSQL = mysqli_query ($connect, $requete);
+                    $nbrEnr = mysqli_num_rows ( $resSQL );
+    
+                    for ($num=1; $num <= $nbrEnr ; $num++){
+                        $tab = mysqli_fetch_array($resSQL);
+                        $nameFab = $tab['nom_f'];
+                        echo '<div class="d-flex align-items-center form-check-inline">
+                        <input class="form-check-input mx-3" id="'.$nameFab.'" type="checkbox" id="inlineCheckbox1" value="'.$tab['id_f'].'">
+                        <label class="form-check-label f-genos fs-4" for="inlineCheckbox1">'.$nameFab.'</label>
+                    </div>';
+                }
+                    ?>
 
                 </div>
               </div>
             </div>
-
             <!--section-->
             <div class="accordion-item">
                 <h2 class="accordion-header" id="headingTwo">
@@ -112,264 +114,78 @@ navBar();
 
                 </div>
               </div>
+              <div>
+              <button type="submit" class="btn btn-primary btn-lg m-auto">Large button</button>
+              </div>
               <!--fin-->
             </div>
           </div>
+          </form>
     </article>
 
 <!--==== articles =====-->
 
     <article class="row justify-content-evenly col-lg-8 m-auto">
-        <!--card-->
-            <div class="card mt-3" style="width: 18rem;">
-                <img src="../medias/materiel/camera01.jpg" class="card-img-top" alt="...">
-                <div class="card-body border-top">
-                    <div class="d-flex-column text-center f-genos">
-                        <a href="#" class="text-muted text-decoration-none">camera</a>
-                        <h2 class="m-0">NSTAB</h2>
-                        <div class=" d-flex justify-content-evenly align-items-center">
-                            <span class="fs-2">180€</span>
-                            <span class="fs-4 text-decoration-line-through text-muted">220€</span>
-                        </div>
+            <?php
 
-                    </div>
-                <ul class="d-flex list-none justify-content-evenly ">
-                    <li>
-                        <a href="#"><img src="../medias/icon/like.svg" width="25px" height="25px" alt=""></a>
-                    </li>
-                    <li>
-                        <a href="#"><img src="../medias/icon/panier.svg" width="25px" height="25px" alt=""></a>
-                    </li>
-                </ul>
-                </div>
-            </div>
+$connect = mysqli_connect('localhost','root','','lumectif') or die (mysqli_connect_error());
+                $okcharset = mysqli_set_charset ($connect, 'utf8');
+                $requete = "SELECT * FROM `lum_article` LEFT JOIN `lum_avis` ON lum_article.id_a = lum_avis.id_a";
+                $resSQL = mysqli_query ($connect, $requete);
+                $nbrEnr = mysqli_num_rows ( $resSQL );
 
-            <!--card-->
-            <div class="card mt-3" style="width: 18rem;">
-                <img src="../medias/materiel/camera01.jpg" class="card-img-top" alt="...">
-                <div class="card-body border-top">
-                    <div class="d-flex-column text-center f-genos">
-                        <a href="#" class="text-muted text-decoration-none">camera</a>
-                        <h2 class="m-0">NSTAB</h2>
-                        <div class=" d-flex justify-content-evenly align-items-center">
-                            <span class="fs-2">180€</span>
-                            <span class="fs-4 text-decoration-line-through text-muted">220€</span>
-                        </div>
-
-                    </div>
-                <ul class="d-flex list-none justify-content-evenly ">
-                    <li>
-                        <a href="#"><img src="../medias/icon/like.svg" width="25px" height="25px" alt=""></a>
-                    </li>
-                    <li>
-                        <a href="#"><img src="../medias/icon/panier.svg" width="25px" height="25px" alt=""></a>
-                    </li>
-                </ul>
-                </div>
-            </div>
-
-            <!--card-->
-            <div class="card mt-3" style="width: 18rem;">
-                <img src="../medias/materiel/camera01.jpg" class="card-img-top" alt="...">
-                <div class="card-body border-top">
-                    <div class="d-flex-column text-center f-genos">
-                        <a href="#" class="text-muted text-decoration-none">camera</a>
-                        <h2 class="m-0">NSTAB</h2>
-                        <div class=" d-flex justify-content-evenly align-items-center">
-                            <span class="fs-2">180€</span>
-                            <span class="fs-4 text-decoration-line-through text-muted">220€</span>
-                        </div>
-
-                    </div>
-                <ul class="d-flex list-none justify-content-evenly ">
-                    <li>
-                        <a href="#"><img src="../medias/icon/like.svg" width="25px" height="25px" alt=""></a>
-                    </li>
-                    <li>
-                        <a href="#"><img src="../medias/icon/panier.svg" width="25px" height="25px" alt=""></a>
-                    </li>
-                </ul>
-                </div>
-            </div>
-
-        <!--card-->
-        <div class="card mt-3" style="width: 18rem;">
-            <img src="../medias/materiel/camera01.jpg" class="card-img-top" alt="...">
-            <div class="card-body border-top">
-                <div class="d-flex-column text-center f-genos">
-                    <a href="#" class="text-muted text-decoration-none">camera</a>
-                    <h2 class="m-0">NSTAB</h2>
-                    <div class=" d-flex justify-content-evenly align-items-center">
-                        <span class="fs-2">180€</span>
-                        <span class="fs-4 text-decoration-line-through text-muted">220€</span>
-                    </div>
-
-                </div>
-            <ul class="d-flex list-none justify-content-evenly align-items-center">
-                <li>
-                    <a href="#"><img src="../medias/icon/like.svg" width="25px" height="25px" alt=""></a>
-                </li>
-                <li>
-                    <a href="#"><img src="../medias/icon/panier.svg" width="25px" height="25px" alt=""></a>
-                </li>
-                <li>
-                    <div class="fas fa-star" style="color: gold"></div>
-                    <div class="fas fa-star "style="color: gold"></div>
-                    <div class="fas fa-star"style="color: gold"></div>
-                    <div class="fas fa-star" style="color:#4B5C35"></div>
-                    <div class="fas fa-star" style="color: #4B5C35;"></div>
-                    
-                </li>
-            </ul>
-            </div>
-        </div>
-
+                for ($num=1; $num <= $nbrEnr ; $num++){
+                    $tab = mysqli_fetch_array($resSQL);
+                    $nameArt = $tab['nom_a'];
+                    $prixArt = $tab['prix_a'];
+                    $promoPour = $tab ['promo_a'];
+                    $promo = "";
+                    $prixPromo = 0;
+                    $note = $tab ['note_av'];
+                    $noteTxt = "";
+                    if($promoPour != 0){
+                        $prixPromo = ($prixArt-$prixArt*$promoPour/100);
+                        $promo = '<span class="fs-2">'.$prixPromo.'€</span> <span class="fs-4 text-decoration-line-through text-muted">'.$prixArt.'€</span>';
+                    }
+                    else{
+                        $promo = '<span class="fs-2">'.$prixArt.'€</span>';
+                    };
+                    if(isset($note)){
+                        for($n=0; $n<$note; $n++){
+                            $noteTxt .= '<div class="fas fa-star" style="color: gold"></div>';
+                        }
+                        for($n=0; $n<5-$note; $n++){
+                            $noteTxt .= '<div class="fas fa-star" style="color: #4B5C35;"></div>';
+                        }
+                    }
+                echo '
                 <!--card-->
                 <div class="card mt-3" style="width: 18rem;">
                     <img src="../medias/materiel/camera01.jpg" class="card-img-top" alt="...">
                     <div class="card-body border-top">
                         <div class="d-flex-column text-center f-genos">
                             <a href="#" class="text-muted text-decoration-none">camera</a>
-                            <h2 class="m-0">NSTAB</h2>
-                            <div class=" d-flex justify-content-evenly align-items-center">
-                                <span class="fs-2">180€</span>
-                                <span class="fs-4 text-decoration-line-through text-muted">220€</span>
+                            <h2 class="m-0">'.$nameArt.'</h2>
+                            <div class=" d-flex justify-content-evenly align-items-center">'.$promo.'
                             </div>
-    
-                        </div>
-                    <ul class="d-flex list-none justify-content-evenly ">
-                        <li>
-                            <a href="#"><img src="../medias/icon/like.svg" width="25px" height="25px" alt=""></a>
-                        </li>
-                        <li>
-                            <a href="#"><img src="../medias/icon/panier.svg" width="25px" height="25px" alt=""></a>
-                        </li>
-                    </ul>
-                    </div>
-                </div>
-
-                        <!--card-->
-            <div class="card mt-3" style="width: 18rem;">
-                <img src="../medias/materiel/camera01.jpg" class="card-img-top" alt="...">
-                <div class="card-body border-top">
-                    <div class="d-flex-column text-center f-genos">
-                        <a href="#" class="text-muted text-decoration-none">camera</a>
-                        <h2 class="m-0">NSTAB</h2>
-                        <div class=" d-flex justify-content-evenly align-items-center">
-                            <span class="fs-2">180€</span>
-                            <span class="fs-4 text-decoration-line-through text-muted">220€</span>
-                        </div>
-
-                    </div>
-                <ul class="d-flex list-none justify-content-evenly ">
-                    <li>
-                        <a href="#"><img src="../medias/icon/like.svg" width="25px" height="25px" alt=""></a>
-                    </li>
-                    <li>
-                        <a href="#"><img src="../medias/icon/panier.svg" width="25px" height="25px" alt=""></a>
-                    </li>
-                </ul>
-                </div>
-            </div>
-
-                    <!--card-->
-                    <div class="card mt-3" style="width: 18rem;">
-                        <img src="../medias/materiel/camera01.jpg" class="card-img-top" alt="...">
-                        <div class="card-body border-top">
-                            <div class="d-flex-column text-center f-genos">
-                                <a href="#" class="text-muted text-decoration-none">camera</a>
-                                <h2 class="m-0">NSTAB</h2>
-                                <div class=" d-flex justify-content-evenly align-items-center">
-                                    <span class="fs-2">180€</span>
-                                    <span class="fs-4 text-decoration-line-through text-muted">220€</span>
-                                </div>
-        
                             </div>
-                        <ul class="d-flex list-none justify-content-evenly ">
-                            <li>
-                                <a href="#"><img src="../medias/icon/like.svg" width="25px" height="25px" alt=""></a>
-                            </li>
-                            <li>
-                                <a href="#"><img src="../medias/icon/panier.svg" width="25px" height="25px" alt=""></a>
-                            </li>
-                        </ul>
-                        </div>
-                    </div>
-
-                            <!--card-->
-            <div class="card mt-3" style="width: 18rem;">
-                <img src="../medias/materiel/camera01.jpg" class="card-img-top" alt="...">
-                <div class="card-body border-top">
-                    <div class="d-flex-column text-center f-genos">
-                        <a href="#" class="text-muted text-decoration-none">camera</a>
-                        <h2 class="m-0">NSTAB</h2>
-                        <div class=" d-flex justify-content-evenly align-items-center">
-                            <span class="fs-2">180€</span>
-                            <span class="fs-4 text-decoration-line-through text-muted">220€</span>
-                        </div>
-
-                    </div>
-                <ul class="d-flex list-none justify-content-evenly ">
-                    <li>
-                        <a href="#"><img src="../medias/icon/like.svg" width="25px" height="25px" alt=""></a>
-                    </li>
-                    <li>
-                        <a href="#"><img src="../medias/icon/panier.svg" width="25px" height="25px" alt=""></a>
-                    </li>
-                </ul>
-                </div>
-            </div>
-            
-                            <!--card-->
-                            <div class="card mt-3" style="width: 18rem;">
-                                <img src="../medias/materiel/camera01.jpg" class="card-img-top" alt="...">
-                                <div class="card-body border-top">
-                                    <div class="d-flex-column text-center f-genos">
-                                        <a href="#" class="text-muted text-decoration-none">camera</a>
-                                        <h2 class="m-0">NSTAB</h2>
-                                        <div class=" d-flex justify-content-evenly align-items-center">
-                                            <span class="fs-2">180€</span>
-                                            <span class="fs-4 text-decoration-line-through text-muted">220€</span>
-                                        </div>
-                
-                                    </div>
-                                <ul class="d-flex list-none justify-content-evenly ">
-                                    <li>
-                                        <a href="#"><img src="../medias/icon/like.svg" width="25px" height="25px" alt=""></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><img src="../medias/icon/panier.svg" width="25px" height="25px" alt=""></a>
-                                    </li>
-                                    <li>
-
-                                    </li>
-                                </ul>
-                                </div>
+                            <ul class="d-flex list-none justify-content-evenly ">
+                                <li>
+                                    <a href="#"><img src="../medias/icon/like.svg" width="25px" height="25px" alt=""></a>
+                                </li>
+                                <li>
+                                    <a href="#"><img src="../medias/icon/panier.svg" width="25px" height="25px" alt=""></a>
+                                </li>
+                                <li>
+                                    '.$noteTxt.'
+                                </li>
+                            </ul>
                             </div>
+                        </div>';
+                        }
+?>
 
-                    <!--card-->
-                    <div class="card mt-3" style="width: 18rem;">
-                        <img src="../medias/materiel/camera01.jpg" class="card-img-top" alt="...">
-                        <div class="card-body border-top">
-                            <div class="d-flex-column text-center f-genos">
-                                <a href="#" class="text-muted text-decoration-none">camera</a>
-                                <h2 class="m-0">NSTAB</h2>
-                                <div class=" d-flex justify-content-evenly align-items-center">
-                                    <span class="fs-2">180€</span>
-                                    <span class="fs-4 text-decoration-line-through text-muted">220€</span>
-                                </div>
-        
-                            </div>
-                        <ul class="d-flex list-none justify-content-evenly ">
-                            <li>
-                                <a href="#"><img src="../medias/icon/like.svg" width="25px" height="25px" alt=""></a>
-                            </li>
-                            <li>
-                                <a href="#"><img src="../medias/icon/panier.svg" width="25px" height="25px" alt=""></a>
-                            </li>
-                        </ul>
-                        </div>
-                    </div> 
+
 
 
 
