@@ -1,7 +1,6 @@
 <?php
 
 function htmlDebut ($titre){
-    $titre = htmlentities($titre, ENT_COMPAT, 'ISO-8859-1');
 echo '
 <!DOCTYPE html>
 <html lang="fr">
@@ -36,6 +35,23 @@ echo '
 </html>';
 }
 function navBar (){
+    if(!isset($_SESSION['statut'])){
+        $statutConect = "connexion";
+    }
+    else{
+        if($_SESSION['statut'] === true){
+            $connect = mysqli_connect('localhost','root','','lumectif') or die (mysqli_connect_error());
+            $okcharset = mysqli_set_charset ($connect, 'utf8');
+            $id_utSQL = $_SESSION['id_ut'];
+            $requete = "SELECT * FROM `lum_utilisateur` WHERE lum_utilisateur.id_ut = '$id_utSQL'";
+            $resSQL = mysqli_query ($connect, $requete);
+            $tab = mysqli_fetch_array($resSQL);
+            $statutConect = $tab['pseudo_ut'];
+        }
+        else{
+        $statutConect = "connexion";
+        }
+    }
     echo '<header>
     <!--===== nav bar du haut =====-->
             <nav class="navHaut mt-2" id="navHautId">
@@ -47,7 +63,7 @@ function navBar (){
                     <input placeholder="Recherche" type="text">
                 </form>
                     <ul class="itemNav">
-                        <li class="user"><a href="#"><img src="../medias/icon/user.svg" alt=""></a></li>
+                        <li class="user"><a href="connexion.php"><span id="connexion" class="me-2 f-genos fs-5">'.$statutConect.'</span><img src="../medias/icon/user.svg" alt=""></a></li>
                         <li class="like"><a href="#"><img src="../medias/icon/like.svg" alt=""></a></li>
                         <li class="panier"><a href="#"><img src="../medias/icon/panier.svg" alt=""></a></li>
                     </ul>
