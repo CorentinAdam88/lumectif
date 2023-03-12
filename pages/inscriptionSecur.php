@@ -1,5 +1,5 @@
 <?php
-    $connect = mysqli_connect('mysql-lumectif.alwaysdata.net','lumectif','SAE203bdd','lumectif_bdd') or die (mysqli_connect_error());
+    $connect = mysqli_connect('localhost','root','','lumectif') or die (mysqli_connect_error());
     $okcharset = mysqli_set_charset ($connect, 'utf8');
     $nom = $_GET['nom'];
     $mail = $_GET['mail'];

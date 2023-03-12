@@ -47,7 +47,7 @@ function navBar (){
     }
     else{
         if($_SESSION['statut'] === true){
-            $connect = mysqli_connect('mysql-lumectif.alwaysdata.net','lumectif','SAE203bdd','lumectif_bdd') or die (mysqli_connect_error());
+            $connect = mysqli_connect('localhost','root','','lumectif') or die (mysqli_connect_error());
             $okcharset = mysqli_set_charset ($connect, 'utf8');
             $id_utSQL = $_SESSION['id_ut'];
             $requete = "SELECT * FROM `lum_utilisateur` WHERE lum_utilisateur.id_ut = '$id_utSQL'";
@@ -62,7 +62,7 @@ function navBar (){
     /*code HTML de la barre de navigation*/
     echo '<header>
     <!--===== nav bar du haut =====-->
-            <nav class="navHaut mt-2" id="navHautId">
+            <nav class="navHaut" id="navHautId">
                 <div class="navHautGauche">
                     <div id="burger"> <img src="../medias/icon/burger.svg" alt=""></div>
                     <div class="logo">L</div>
@@ -105,7 +105,7 @@ function navBar (){
                     }else{
                         click = false;
                         console.log (click)
-                        menu.style.height = "2px";
+                        menu.style.height = "0px";
                     }
                 }
     
@@ -114,7 +114,7 @@ function navBar (){
                         if (!menu.contains(event.target) && !document.getElementById("navHautId").contains(event.target) && click == true){
     
                         click = false;
-                        menu.style.height = "2px";
+                        menu.style.height = "0px";
                     }
                 })
             </script>

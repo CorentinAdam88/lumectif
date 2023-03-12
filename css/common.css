@@ -87,3 +87,7 @@ font-family: 'Poiret One', cursive;
 .fs-h1{
     font-size: 4em;
 }
+
+.bg-image-connexion{
+    background-image: url(../medias/background/bg-cam-connexion.jpg);
+}

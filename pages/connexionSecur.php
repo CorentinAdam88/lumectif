@@ -5,7 +5,7 @@ if($_SESSION['statut'] == true){     /*  ---> verifie si l'utilisateur est dÃ©jÃ
 else{
 if (empty($_GET['login']) == false && empty($_GET['mdp']) == false){    /*---> verification que les champs sont remplie*/
     /*=== CONNECTION BASE DE DONNEES ===*/
-$connect = mysqli_connect('mysql-lumectif.alwaysdata.net','lumectif','SAE203bdd','lumectif_bdd') or die (mysqli_connect_error());
+$connect = mysqli_connect('localhost','root','','lumectif') or die (mysqli_connect_error());
 $okcharset = mysqli_set_charset ($connect, 'utf8');
 $loginSQL = htmlentities($_GET['login'], ENT_COMPAT, 'ISO-8859-1');                         /*  ---> empche l'injection de code SQL*/
 $requete = "SELECT * FROM `lum_utilisateur` WHERE lum_utilisateur.mail_ut = '$loginSQL'"; /*  ---> requete pour retrouver le mot de passe de l'utilisateur X*/

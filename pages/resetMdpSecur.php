@@ -1,6 +1,6 @@
 <?php
 session_start();
-$connect = mysqli_connect('mysql-lumectif.alwaysdata.net','lumectif','SAE203bdd','lumectif_bdd') or die (mysqli_connect_error());
+$connect = mysqli_connect('localhost','root','','lumectif') or die (mysqli_connect_error());
 $mail = $_SESSION['mailReset'];
 $newMdp = htmlentities($_GET['newMdp'], ENT_COMPAT, 'ISO-8859-1');
 var_dump($newMdp);

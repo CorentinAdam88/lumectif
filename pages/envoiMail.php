@@ -1,7 +1,7 @@
 <?php
 session_start();
 $mail = $_GET['mail'];
-$connect = mysqli_connect('mysql-lumectif.alwaysdata.net','lumectif','SAE203bdd','lumectif_bdd') or die (mysqli_connect_error());
+$connect = mysqli_connect('localhost','root','','lumectif') or die (mysqli_connect_error());
 $requete = "SELECT mail_ut FROM lum_utilisateur WHERE lum_utilisateur.mail_ut = '$mail'";
 $resSQL = mysqli_query ($connect, $requete);
 $nbrEnr = mysqli_num_rows ( $resSQL );
