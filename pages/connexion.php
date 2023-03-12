@@ -1,18 +1,21 @@
 <?php
-session_start();
+/*Bibliotheque*/
 include('composants/bibliotheque.php');
 htmlDebut("Lumectif-connexion");
 navBar();
 ?>
+
 <body>
 <main class="form-signin w-100 m-auto">
+  <!--========== FORMULAIRE DE CONNEXION ==========-->
   <form class="text-center col-md-5 col-lg-3 mx-md-auto mx-5 my-5" action="connexionSecur.php" method="GET">
-    <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+    <h1 class="h3 mb-3 fw-normal f-poiretOne">CONNEXION</h1>
 
+<!--===== GESTION DES ERREURS =====-->
   <?php
+  /*=====encadrer les champs de text quand il y a une erreur=====*/
   if(!isset($_SESSION['statut'])){
     $feedback="";
-    echo "ddddddddddddddddddddddddddddddd";
   }
   else{
     if($_SESSION['statut'] === "error"){
@@ -22,25 +25,70 @@ navBar();
       $feedback="";
     }
   }
+  /*=====code html qui encadre ou non les inputs=====*/
     echo'<div class="form-floating my-2">
     <input type="text" class="form-control '.$feedback.'" id="floatingInput" name="login" placeholder="name@example.com">
-    <label for="floatingInput">Email address</label>
+    <label for="floatingInput" class="f-genos">Adresse mail</label>
   </div>
   <div class="form-floating">
     <input type="password" class="form-control '.$feedback.'" id="floatingPassword" name="mdp" placeholder="Password">
-    <label for="floatingPassword">Password</label>
+    <label for="floatingPassword" class="f-genos">Mot de passe</label>
   </div>';
+/*=====verifie si il y a eu une erreur et appel la modal erreur de la bibliotheque=====*/
+  if (isset($_GET['error'])){
+    if ($_GET['error'] == true){
+      includeinclude('composants/bibliotheque.php');
+      error ("Votre adresse mail n'existe pas dans notre base de données veuillez-vous inscrire");
+      unset($_SESSION);
+    }
+  }
+  if (isset($_SESSION['statut'])){
+    if ($_SESSION['statut'] === 'error'){
+      error ($_SESSION['message']);
+      $_SESSION['statut'] = false;
+    }
+  }
   ?>
-    <button class="w-100 btn btn-lg btn-primary my-4" type="submit">Sign in</button>
-    <p class="mt-5 mb-3 text-muted">&copy; 2017–2022</p>
-  </form>
-</main>
-<?php
-if (isset($_SESSION['statut'])){
-  if($_SESSION['statut'] == true)
-  echo (string)$_SESSION['statut'].'<br>';
-  echo hash('sha256', '0000');
-}
 
-?>
+<!--===== BOUTON DE CONNEXION - INSCRIPTION - MOT DE PASSE OUBLIE =====-->
+    <button class="w-100 btn btn-lg btn-primary my-4 f-genos fs-3 p-0" type="submit">connexion</button>
+    <p class="text-muted f-genos fs-5 p-0">Pas encore de compte: <span><a href="inscription.php">s'inscrire</a></span></p>
+    <button type="button" class="btn f-genos fs-5 p-0" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Mot de passe oublié ?
+</button>
+  </form>
+
+  <!-- Button trigger modal -->
+
+
+<!--===== MODAL DU FORMULAIRE DE L'ENVOI DE MAIL =====-->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-4 f-genos" id="exampleModalLabel">Récupération du mot de passe</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+      <form action="envoiMail.php" id="form" method="GET">
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label f-5 f-genos">Adresse mail</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" name="mail" aria-describedby="emailHelp">
+            <div id="emailHelp" class="form-text fs-5 f-genos">Vous allez recevoir un mail (vérifiez dans les spams)</div>
+          </div>
+          </div>
+          <button type="submit" class="btn btn-primary col-3 my-3 m-auto">Envoyer</button>
+      </form>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+      </div>
+    </div>
+  </div>
+</div>
+</main>
+<!--===== Script Bootsrap =====-->
+<script src="../dist/js/bootstrap.min.js"></script>
 </body>
+

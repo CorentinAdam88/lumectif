@@ -1,5 +1,9 @@
 <?php
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 
+/*=====INITIALISATION PAGE HTML =====*/
 function htmlDebut ($titre){
 echo '
 <!DOCTYPE html>
@@ -33,14 +37,17 @@ echo '
     
 </body>
 </html>';
+
+/*===== BARRE DE NAVIGATION =====*/
 }
 function navBar (){
+    /*affiche le nom de l'utilisateur dans la barre de navigation*/
     if(!isset($_SESSION['statut'])){
         $statutConect = "connexion";
     }
     else{
         if($_SESSION['statut'] === true){
-            $connect = mysqli_connect('localhost','root','','lumectif') or die (mysqli_connect_error());
+            $connect = mysqli_connect('mysql-lumectif.alwaysdata.net','lumectif','SAE203bdd','lumectif_bdd') or die (mysqli_connect_error());
             $okcharset = mysqli_set_charset ($connect, 'utf8');
             $id_utSQL = $_SESSION['id_ut'];
             $requete = "SELECT * FROM `lum_utilisateur` WHERE lum_utilisateur.id_ut = '$id_utSQL'";
@@ -52,6 +59,7 @@ function navBar (){
         $statutConect = "connexion";
         }
     }
+    /*code HTML de la barre de navigation*/
     echo '<header>
     <!--===== nav bar du haut =====-->
             <nav class="navHaut mt-2" id="navHautId">
@@ -112,5 +120,22 @@ function navBar (){
             </script>
     
         </header>';
+}
+/*===== MODAL DES ERREURS =====*/
+/*$ Message erreur --> var STRING*/
+function error ($MessageErreur){
+echo '<div class="bg-secondary position-fixed z-3 w-100 h-100 top-50 start-50 translate-middle bg-opacity-75" id="errorModal">
+<div class="w-50 position-fixed z-0 p-3 bg-danger border border-1 border-white rounded-5 text-white fs-2 w-25 h-25 d-flex justify-content-center align-items-center flex-column f-genos top-50 start-50 translate-middle">
+  <p>'.$MessageErreur.'</p>
+  <button type="button" onclick="closeModal()" class="btn btn-secondary fs-3">Close</button>
+  <script>
+    function closeModal(){
+      const errorModal = document.getElementById(\'errorModal\');
+      errorModal.remove();
+
+    }
+  </script>
+</div>
+</div>';
 }
 ?>
