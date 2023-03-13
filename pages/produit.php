@@ -67,7 +67,13 @@ navBar();
                     ?>
                     <div class="d-flex">
                     </div>
-                    <button type="button" class="btn m-auto m-md-0 btn-success d-flex align-items-center f-genos fs-4 bg-green border-green">Ajouter au panier <span class="px-2"><a href="#"><img width="30px" src="../medias/icon/panier_blanc.svg" alt=""></a></span></button>
+
+                    <?php
+                        echo ' <form action="panierSecur.php" method="GET">
+                        <button type="submit" name="panier" value="'.$tab['id_a'].'" class="btn m-auto m-md-0 btn-success d-flex align-items-center f-genos fs-4 bg-green border-green">Ajouter au panier <span class="px-2"><a href="#"><img width="30px" src="../medias/icon/panier_blanc.svg" alt=""></a></span></button>
+                        </form>';
+                    ?>
+
                     <ul class="list-unstyled f-genos fs-2 d-flex flex-column">
                         <?php
                     if(isset($_GET['categorie'])){
