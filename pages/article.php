@@ -17,7 +17,7 @@ navBar();
 
 <section class="d-sm-bloc d-md-flex">
     <article class="col-sm-10 col-md-3 mx-5">
-    <form class="m-0" id="formFab" action="article.php">
+    <form class="m-0" id="formFab" action="article.php" method="GET">
         <div class="accordion" id="accordionExample">
                     <!--section-->
             <div class="accordion-item">
@@ -41,11 +41,18 @@ navBar();
                         $tab = mysqli_fetch_array($resSQL);
                         $nameFab = $tab['nom_f'];
                         echo '<div class="d-flex align-items-center form-check-inline">
-                        <input class="form-check-input mx-3" id="'.$nameFab.'" type="checkbox" id="inlineCheckbox1" value="'.$tab['id_f'].'">
+                        <input class="form-check-input mx-3 formFabInput'.$num.'" id="'.$nameFab.'" type="checkbox" id="inlineCheckbox1" name="'.$tab['id_f'].'">
                         <label class="form-check-label f-genos fs-4" for="inlineCheckbox1">'.$nameFab.'</label>
                     </div>';
                 }
                     ?>
+
+                <script>/*
+                  const input = document.querySelector('.formFabInput2');
+                  input.addEventListener('change', function(){
+                    document.getElementById('formFab').submit();
+                  })*/
+                </script>
 
                 </div>
               </div>
@@ -115,7 +122,6 @@ navBar();
                 </div>
               </div>
               <div>
-              <button type="submit" class="btn btn-primary btn-lg m-auto">Large button</button>
               </div>
               <!--fin-->
             </div>
@@ -130,7 +136,17 @@ navBar();
 
 $connect = mysqli_connect('localhost','root','','lumectif') or die (mysqli_connect_error());
                 $okcharset = mysqli_set_charset ($connect, 'utf8');
-                $requete = "SELECT * FROM `lum_article` LEFT JOIN `lum_avis` ON lum_article.id_a = lum_avis.id_a";
+                $onOff = 0;
+                for ($n=1;$n<=count($_GET); $n++){
+                  if(isset($_GET[strval($n)])){
+              }
+                }
+                $requete = "SELECT *
+                FROM `lum_article`
+                JOIN `lum_avis`
+                ON lum_avis.id_a = lum_article.id_a
+                JOIN `lum_categorie`
+                ON lum_categorie.id_ca = lum_article.id_ca";
                 $resSQL = mysqli_query ($connect, $requete);
                 $nbrEnr = mysqli_num_rows ( $resSQL );
 
@@ -161,26 +177,28 @@ $connect = mysqli_connect('localhost','root','','lumectif') or die (mysqli_conne
                 echo '
                 <!--card-->
                 <div class="card mt-3" style="width: 18rem;">
-                    <img src="../medias/materiel/camera01.jpg" class="card-img-top" alt="...">
-                    <div class="card-body border-top">
-                        <div class="d-flex-column text-center f-genos">
-                            <a href="#" class="text-muted text-decoration-none">camera</a>
-                            <h2 class="m-0">'.$nameArt.'</h2>
-                            <div class=" d-flex justify-content-evenly align-items-center">'.$promo.'
-                            </div>
-                            </div>
-                            <ul class="d-flex list-none justify-content-evenly ">
-                                <li>
-                                    <a href="#"><img src="../medias/icon/like.svg" width="25px" height="25px" alt=""></a>
-                                </li>
-                                <li>
-                                    <a href="#"><img src="../medias/icon/panier.svg" width="25px" height="25px" alt=""></a>
-                                </li>
-                                <li>
-                                    '.$noteTxt.'
-                                </li>
-                            </ul>
-                            </div>
+                  <a href="produit.php?idProduit='.$tab['id_a'].'&categorie='.$tab['id_ca'].'">
+                      <img src="../medias/materiel/camera01.jpg" class="card-img-top" alt="...">
+                      <div class="card-body border-top">
+                          <div class="d-flex-column text-center f-genos">
+                              <a href="#" class="text-muted text-decoration-none">'.$tab['titre_ca'].'</a>
+                              <h2 class="m-0">'.$nameArt.'</h2>
+                              <div class=" d-flex justify-content-evenly align-items-center">'.$promo.'
+                              </div>
+                              </div>
+                              <ul class="d-flex list-none justify-content-evenly ">
+                                  <li>
+                                      <a href="#"><img src="../medias/icon/like.svg" width="25px" height="25px" alt=""></a>
+                                  </li>
+                                  <li>
+                                      <a href="#"><img src="../medias/icon/panier.svg" width="25px" height="25px" alt=""></a>
+                                  </li>
+                                  <li>
+                                      '.$noteTxt.'
+                                  </li>
+                              </ul>
+                              </div>
+                            </a>
                         </div>';
                         }
 ?>

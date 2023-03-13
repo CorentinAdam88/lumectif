@@ -71,11 +71,18 @@ navBar();
                     <ul class="list-unstyled f-genos fs-2 d-flex flex-column">
                         <?php
                         $connect = mysqli_connect('localhost','root','','lumectif') or die (mysqli_connect_error());
+                        $categorieProduitSelect = $_GET['categorie'];
+                        $requeteCat = "SELECT * FROM lum_categorie WHERE id_ca = $categorieProduitSelect";
+                        $resSQLCat = mysqli_query ($connect, $requeteCat);
+                        $tab = mysqli_fetch_array($resSQL);
+                        $categorieSelect = $tab[''];
+
                         $requeteCat = "SELECT `column_name` FROM information_schema.columns WHERE `table_name` = 'lum_camera'";
                         $resSQLCat = mysqli_query ($connect, $requeteCat);
                         $nbrEnrCat = mysqli_num_rows ( $resSQLCat );
+                        $produit = $_GET['idProduit'];
 
-                        $requete = "SELECT lum_camera.* FROM lum_camera JOIN lum_article ON lum_article.id_a = lum_camera.id_a WHERE lum_camera.id_a = 3";
+                        $requete = "SELECT lum_camera.* FROM lum_camera JOIN lum_article ON lum_article.id_a = lum_camera.id_a JOIN `lum_categorie` ON lum_article.id_ca = lum_categorie.id_ca WHERE lum_camera.id_a = $produit";
                         $resSQL = mysqli_query ($connect, $requete);
                         $nbrEnr = mysqli_num_rows ( $resSQL );
                         $tab = mysqli_fetch_array($resSQL);

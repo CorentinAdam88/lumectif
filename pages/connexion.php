@@ -11,7 +11,7 @@ htmlDebut("Lumectif-connexion");
   ?>
 <main class="form-signin w-100 p-5">
   <!--========== FORMULAIRE DE CONNEXION ==========-->
-  <form class=" col-md-5 col-lg-3 mx-5 my-5" action="connexionSecur.php" method="GET">
+  <form class=" col-md-5 col-lg-3 mx-5 my-5 text-center text-md-start" action="connexionSecur.php" method="GET">
     <h1 class="h3 mb-3 fw-normal f-poiretOne fs-1 text-white">CONNEXION</h1>
 
 <!--===== GESTION DES ERREURS =====-->

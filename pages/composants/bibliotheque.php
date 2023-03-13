@@ -44,19 +44,22 @@ function navBar (){
     /*affiche le nom de l'utilisateur dans la barre de navigation*/
     if(!isset($_SESSION['statut'])){
         $statutConect = "connexion";
+        $statutConectLink = "connexion";
     }
     else{
         if($_SESSION['statut'] === true){
-            $connect = mysqli_connect('localhost','root','','lumectif') or die (mysqli_connect_error());
+            $connect = mysqli_connect('mysql-lumectif.alwaysdata.net','lumectif','SAE203bdd','lumectif_bdd') or die (mysqli_connect_error());
             $okcharset = mysqli_set_charset ($connect, 'utf8');
             $id_utSQL = $_SESSION['id_ut'];
             $requete = "SELECT * FROM `lum_utilisateur` WHERE lum_utilisateur.id_ut = '$id_utSQL'";
             $resSQL = mysqli_query ($connect, $requete);
             $tab = mysqli_fetch_array($resSQL);
             $statutConect = $tab['pseudo_ut'];
+            $statutConectLink = "pageUtilisateur";
         }
         else{
         $statutConect = "connexion";
+        $statutConectLink = "connexion";
         }
     }
     /*code HTML de la barre de navigation*/
@@ -64,14 +67,14 @@ function navBar (){
     <!--===== nav bar du haut =====-->
             <nav class="navHaut" id="navHautId">
                 <div class="navHautGauche">
-                    <div id="burger"> <img src="../medias/icon/burger.svg" alt=""></div>
+                    <div id="burger"> <img id="burgerImg" src="../medias/icon/burger.svg" alt=""></div>
                     <div class="logo">L</div>
                  </div>
                 <form class="formHaut" action="">
                     <input placeholder="Recherche" type="text">
                 </form>
                     <ul class="itemNav">
-                        <li class="user"><a href="connexion.php"><span id="connexion" class="me-2 f-genos fs-5">'.$statutConect.'</span><img src="../medias/icon/user.svg" alt=""></a></li>
+                        <li class="user"><a href="'.$statutConectLink.'.php"><span id="connexion" class="me-2 f-genos fs-5">'.$statutConect.'</span><img src="../medias/icon/user.svg" alt=""></a></li>
                         <li class="like"><a href="#"><img src="../medias/icon/like.svg" alt=""></a></li>
                         <li class="panier"><a href="#"><img src="../medias/icon/panier.svg" alt=""></a></li>
                     </ul>
@@ -85,7 +88,7 @@ function navBar (){
                         </form>
                     </li>
                     <li><a href="#">accueil</a></li>
-                    <li><a href="#">produit</a></li>
+                    <li><a href="article.php">shop</a></li>
                     <li><a href="#">astuce</a></li>
                     <li><a href="#">contact</a></li>
                 </ul>
@@ -96,14 +99,17 @@ function navBar (){
                 var click = false
                 const menu = document.getElementById("navBasId");
                 const menuBurger = document.getElementById("burger");
+                const burgerImg = document.getElementById("burgerImg");
                 menuBurger.onclick = function(){ 
                     if(click == false){
+                        burgerImg.src = "../medias/icon/croixBurger.svg";
                         click = true;
                         console.log("test");
                         menu.style.height = "330px";
                         console.log (click)
                     }else{
                         click = false;
+                        burgerImg.src = "../medias/icon/burger.svg";
                         console.log (click)
                         menu.style.height = "0px";
                     }
@@ -114,6 +120,7 @@ function navBar (){
                         if (!menu.contains(event.target) && !document.getElementById("navHautId").contains(event.target) && click == true){
     
                         click = false;
+                        burgerImg.src = "../medias/icon/Burger.svg";
                         menu.style.height = "0px";
                     }
                 })
