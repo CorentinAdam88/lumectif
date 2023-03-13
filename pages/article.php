@@ -141,9 +141,9 @@ $connect = mysqli_connect('localhost','root','','lumectif') or die (mysqli_conne
                   if(isset($_GET[strval($n)])){
               }
                 }
-                $requete = "SELECT *
+                $requete = "SELECT lum_article.*, lum_avis.note_av, lum_categorie.titre_ca
                 FROM `lum_article`
-                JOIN `lum_avis`
+                LEFT JOIN `lum_avis`
                 ON lum_avis.id_a = lum_article.id_a
                 JOIN `lum_categorie`
                 ON lum_categorie.id_ca = lum_article.id_ca";

@@ -70,19 +70,29 @@ navBar();
                     <button type="button" class="btn m-auto m-md-0 btn-success d-flex align-items-center f-genos fs-4 bg-green border-green">Ajouter au panier <span class="px-2"><a href="#"><img width="30px" src="../medias/icon/panier_blanc.svg" alt=""></a></span></button>
                     <ul class="list-unstyled f-genos fs-2 d-flex flex-column">
                         <?php
-                        $connect = mysqli_connect('localhost','root','','lumectif') or die (mysqli_connect_error());
-                        $categorieProduitSelect = $_GET['categorie'];
-                        $requeteCat = "SELECT * FROM lum_categorie WHERE id_ca = $categorieProduitSelect";
-                        $resSQLCat = mysqli_query ($connect, $requeteCat);
-                        $tab = mysqli_fetch_array($resSQL);
-                        $categorieSelect = $tab[''];
+                    if(isset($_GET['categorie'])){
+                        $categorieSelec = $_GET['categorie'];
 
-                        $requeteCat = "SELECT `column_name` FROM information_schema.columns WHERE `table_name` = 'lum_camera'";
+                        if ($categorieSelec == 1){
+                            $categorieSQL = "lum_steadicam";
+                        }
+                        if($categorieSelec == 4){
+                            $categorieSQL = "lum_camera";
+                        }
+                        if($categorieSelec == 5){
+                            $categorieSQL = "lum_light";
+                        }
+                        if($categorieSelec == 6){
+                            $categorieSQL = "lum_objectif";
+                        }
+                    }
+
+                        $requeteCat = "SELECT `column_name` FROM information_schema.columns WHERE `table_name` = '$categorieSQL'";
                         $resSQLCat = mysqli_query ($connect, $requeteCat);
                         $nbrEnrCat = mysqli_num_rows ( $resSQLCat );
                         $produit = $_GET['idProduit'];
 
-                        $requete = "SELECT lum_camera.* FROM lum_camera JOIN lum_article ON lum_article.id_a = lum_camera.id_a JOIN `lum_categorie` ON lum_article.id_ca = lum_categorie.id_ca WHERE lum_camera.id_a = $produit";
+                        $requete = "SELECT $categorieSQL.* FROM $categorieSQL JOIN lum_article ON lum_article.id_a = $categorieSQL.id_a WHERE $categorieSQL.id_a = $produit";
                         $resSQL = mysqli_query ($connect, $requete);
                         $nbrEnr = mysqli_num_rows ( $resSQL );
                         $tab = mysqli_fetch_array($resSQL);
@@ -90,7 +100,8 @@ navBar();
                             $tabCat = mysqli_fetch_array($resSQLCat);
                             if (strpos($tabCat['COLUMN_NAME'], "id" ) === false) {
                                 $categorie = $tabCat['COLUMN_NAME'];
-                            echo'<li>'.str_replace("_cam","",$tabCat['COLUMN_NAME']).': <span>'.$tab[$categorie].'</span></li>';
+                                $strSuppr = substr($tabCat['COLUMN_NAME'], -4);
+                            echo'<li>'.str_replace($strSuppr,"",$tabCat['COLUMN_NAME']).': <span>'.$tab[$categorie].'</span></li>';
                             }
                         }
                 ?>
