@@ -10,26 +10,34 @@ navBar();
 <body>
 <!--===== carousel =====-->
 
+<!--===== BLOC ASTUCE =====-->
 <section class="bg-black text-light p-5 f-genos">
     <h1>Le saviez vous ?</h1>
     <p class="col-sm-16 col-md-6">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis accusantium natus laudantium quasi officia vero sapiente velit quod. Quas, nulla reprehenderit harum enim numquam ullam accusantium at recusandae animi in, a asperiores labore totam. Assumenda, a minima! Ipsam quisquam voluptate temporibus, voluptatum esse magni dolores nemo. Aliquam doloribus alias voluptates!</p>
 </section>
 
+<!--===== ARTICLE =====-->
 <section class="d-sm-bloc d-md-flex">
+
+    <!--=== FILTRE ===-->
     <article class="col-sm-10 col-md-3 mx-5">
     <form class="m-0" id="formFab" action="article.php" method="GET">
         <div class="accordion" id="accordionExample">
-                    <!--section-->
+
+
+                    <!--= FILTRE MARQUE =-->
             <div class="accordion-item">
-              <h2 class="accordion-header" id="headingOne">
-                <button class="accordion-button f-poiretOne fs-3 bg-white fs-green" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                  Marque
-                </button>
-              </h2>
+                <h2 class="accordion-header" id="headingOne">
+
+                        <button class="accordion-button f-poiretOne fs-3 bg-white fs-green" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        Marque
+                        </button>
+                        
+                </h2>
               <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                 <div class="accordion-body">
                   
-                    <!--Content-->
+                    <!--= CONTENUE FILTRE MARQUE =-->
                     <?php
                     $connect = mysqli_connect('localhost','root','','lumectif') or die (mysqli_connect_error());
                     $okcharset = mysqli_set_charset ($connect, 'utf8');
@@ -57,7 +65,9 @@ navBar();
                 </div>
               </div>
             </div>
-            <!--section-->
+
+
+            <!--=== FILTRE PRIX ===-->
             <div class="accordion-item">
                 <h2 class="accordion-header" id="headingTwo">
                   <button class="accordion-button f-poiretOne fs-3 bg-white fs-green" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
@@ -67,7 +77,7 @@ navBar();
                 <div id="collapseTwo" class="accordion-collapse collapse show" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
                   <div class="accordion-body">
                     
-                      <!--Content-->
+                      <!--= CONTENUE FILTRE PRIX =-->
                       <div class="input-group mb-3">
                         <span class="input-group-text">Prix max €</span>
                         <input type="text" class="form-control" aria-label="Dollar amount (with dot and two decimal places)">
@@ -77,6 +87,8 @@ navBar();
                   </div>
                 </div>
               </div>
+
+              <!--=== FILTRE AVIS ===-->
             <div class="accordion-item">
               <h2 class="accordion-header" id="headingThree">
                 <button class="accordion-button collapsed f-poiretOne fs-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
@@ -85,6 +97,7 @@ navBar();
               </h2>
               <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
                 <div class="accordion-body">
+                    <!--= CONTENUE FILTRE ETOILE =-->
                   <div  id="note" class="d-flex justify-content-evenly">
                   </div>
 
@@ -96,7 +109,9 @@ navBar();
                         for(i=0; i<5; i++){
                             content = content+'<div class="fas fa-star over-star" onclick="note(this.id)" style="color:#4B5C35" id="'+i+'"></div>';     /* ---> création de cinq étoiles*/
                         }
-                        function note(etoileId){                    /* ---> fonction du changement d'étoile*/
+                /* ---> fonction qui permet de selectionner un nombre X d'étoile. Chaque fois qu'une étoile est cliquée
+                les étoiles precedente sont automatiquement selectionnées*/
+                        function note(etoileId){
                                 var note = eval(etoileId) + 1;
                                 if (typeof(evaluer) == "undefined"){
                                     evaluer = false
@@ -104,15 +119,15 @@ navBar();
                                 if(evaluer == false){
                                     evaluer = true
                                     for(n=0; n<note; n++){
-                                        document.getElementById(String(n)).style.color = "gold";
+                                        document.getElementById(String(n)).style.color = "gold"; /* ---> changement couleur*/
                                     }
                             }
                             else{
                                     for (n=0; n<5; n++){
-                                        document.getElementById(String(n)).style.color = "#4B5C35";
+                                        document.getElementById(String(n)).style.color = "#4B5C35";/* ---> changement couleur*/
                                     }
                                     for(n=0; n<note; n++){
-                                        document.getElementById(String(n)).style.color = "gold";
+                                        document.getElementById(String(n)).style.color = "gold";/* ---> changement couleur*/
                                     }
                                     console.log(note)
                                     
@@ -124,19 +139,21 @@ navBar();
 
                 </div>
               </div>
-              <div>
               </div>
-              <!--fin-->
+
+
             </div>
           </div>
           </form>
     </article>
 
-<!--==== articles =====-->
+
+
+<!--==== LISTE PRODUIT =====-->
 
     <article class="row justify-content-evenly col-lg-8 m-auto">
 
-    <!--Dynamisation des étoile-->
+    <!--=== DYNAMISATION DES ARTICLES ===-->
             <?php
 
 $connect = mysqli_connect('localhost','root','','lumectif') or die (mysqli_connect_error());
@@ -164,6 +181,7 @@ $connect = mysqli_connect('localhost','root','','lumectif') or die (mysqli_conne
                     $prixPromo = 0;
                     $note = $tab ['note_av'];
                     $noteTxt = "";
+            /*=== DETECTION D'UNE PROMO AVEC ACIENNE ET NOUVELLE NOTE ===*/
                     if($promoPour != 0){
                         $prixPromo = ($prixArt-$prixArt*$promoPour/100);
                         $promo = '<span class="fs-2">'.$prixPromo.'€</span> <span class="fs-4 text-decoration-line-through text-muted">'.$prixArt.'€</span>';
@@ -179,8 +197,8 @@ $connect = mysqli_connect('localhost','root','','lumectif') or die (mysqli_conne
                             $noteTxt .= '<div class="fas fa-star" style="color: #4B5C35;"></div>';
                         }
                     }
+        /*---CARTE DES ARTICLES---*/
                 echo '
-                <!--card-->
                 <div class="card m-3" style="width: 18rem;">
                   <a href="produit.php?idProduit='.$tab['id_a'].'&categorie='.$tab['id_ca'].'&name='.$tab['nom_a'].'">
                       <img src="../medias/materiel/camera01.jpg" class="card-img-top" alt="...">
