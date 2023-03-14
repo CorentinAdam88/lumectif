@@ -214,7 +214,7 @@ $connect = mysqli_connect('localhost','root','','lumectif') or die (mysqli_conne
                                       <a href="#"><img src="../medias/icon/like.svg" width="25px" height="25px" alt=""></a>
                                   </li>
                                   <li>
-                                      <a href="#"><img src="../medias/icon/panier.svg" width="25px" height="25px" alt=""></a>
+                                      <a href="panierSecur.php?panier='.$tab['id_a'].'"><img src="../medias/icon/panier.svg" width="25px" height="25px" alt=""></a>
                                   </li>
                                   <li>
                                       '.$noteTxt.'

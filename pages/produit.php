@@ -103,7 +103,7 @@ navBar();
                         $requeteCat = "SELECT `column_name` FROM information_schema.columns WHERE `table_name` = '$categorieSQL'";
                         $resSQLCat = mysqli_query ($connect, $requeteCat);
                         $nbrEnrCat = mysqli_num_rows ( $resSQLCat );
-                        $produit = $_GET['idProduit'];
+                        $produit = intval($_GET['idProduit']);
 
                         $requete = "SELECT $categorieSQL.* FROM $categorieSQL JOIN lum_article ON lum_article.id_a = $categorieSQL.id_a WHERE $categorieSQL.id_a = $produit";
                         $resSQL = mysqli_query ($connect, $requete);

@@ -44,7 +44,7 @@ function navBar (){
     /*affiche le nom de l'utilisateur dans la barre de navigation*/
     $nbrEnrNotif = "";
     if(!isset($_SESSION['statut'])){
-        $statutConect = '<span id="connexion" class="me-2 f-genos fs-5">connexion</span>';
+        $statutConect = "connexion";
         $statutConectLink = "connexion";
     }
     else{
@@ -55,23 +55,7 @@ function navBar (){
             $requete = "SELECT * FROM `lum_utilisateur` WHERE lum_utilisateur.id_ut = '$id_utSQL'";
             $resSQL = mysqli_query ($connect, $requete);
             $tab = mysqli_fetch_array($resSQL);
-
-
-            $statutConect = '<div class="dropdown d-inline-flex">
-            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-          <span id="connexion" class="me-2 f-genos fs-5">'.$tab['pseudo_ut'].'</span>
-            </button>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Action</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
-            </ul>
-          </div>';
-
-
-
-
-
+            $statutConect = $tab['pseudo_ut'];
             $statutConectLink = "pageUtilisateur";
 
             $utilisateur = $_SESSION['id_ut'];
@@ -87,8 +71,8 @@ function navBar (){
             $nbrEnrNotif = mysqli_num_rows ( $resSQLNotif );
         }
         else{
-        $statutConect = '<span id="connexion" class="me-2 f-genos fs-5">connexion</span>';
-        $statutConectLink = 'connexion';
+        $statutConect = "connexion";
+        $statutConectLink = "connexion";
         }
     }
     if(isset($_SESSION['statut'])){
@@ -114,7 +98,7 @@ function navBar (){
                     <input placeholder="Recherche" type="text">
                 </form>
                     <ul class="itemNav">
-                        <li class="user"><a href="'.$statutConectLink.'.php">'.$statutConect.'<img src="../medias/icon/user.svg" alt=""></a></li>
+                        <li class="user"><a href="'.$statutConectLink.'.php"><span id="connexion" class="me-2 f-genos fs-5">'.$statutConect.'</span><img src="../medias/icon/user.svg" alt=""></a></li>
                         <li class="like"><a href="#"><img src="../medias/icon/like.svg" alt=""></a></li>
                         <li class="panier"><a href="'.$linkPan.'.php"><img src="../medias/icon/panier.svg" alt=""> <span id="panierNotif">'.$nbrEnrNotif.'</span></a></li>
                     </ul>
