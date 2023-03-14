@@ -90,4 +90,9 @@ font-family: 'Poiret One', cursive;
 
 .bg-image-connexion{
     background-image: url(../medias/background/bg-cam-connexion.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
+
+

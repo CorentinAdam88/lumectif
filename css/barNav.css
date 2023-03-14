@@ -78,6 +78,22 @@ form input{
     margin-left: 30px;
 }
 
+#panierNotif{
+position: absolute;
+bottom: 0px;
+text-align: center;
+width: 20px;
+z-index: 100;
+background-color:#4B5C35;
+color: #fff;
+font-family: 'genos', sans-serif;
+font-size: large;
+border-radius: 5px;
+}
+
+.itemNav li:last-child{
+    position: relative;
+}
 
 /*navbar du bas*/
 
@@ -115,9 +131,9 @@ nav.navBas ul li:first-child{
 }
 
 nav.navBas ul li a{
-    color: #4B5C35;
     font-family: 'Poiret One', cursive;
     font-size: 1.3em;
+    font-weight: bold;
 }
 
 nav.navBas ul li:first-child{

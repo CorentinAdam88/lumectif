@@ -1,94 +1,29 @@
-<!doctype html>
-<html lang="fr">
+<?php
+include('composants/bibliotheque.php');
+htmlDebut("Lumectif-");
+navBar();
+?>
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="Par d'index du site @home">
-  <meta name="author" content="JL Husson">
-
-  <title>@Home - version Bootstrap 5</title>
-
-  <!-- Boostrap -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
-    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-  <!-- CSS -->
-  <link rel="stylesheet" href="../css/index.css">
-  <link rel="stylesheet" href="../css/common.css">
-
-  <!-- Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-  <link href="https://fonts.cdnfonts.com/css/el-messiri" rel="stylesheet">
-</head>
-
-<body class="font-family-messiri body-background">
-  <?php include './composants/navbar.php'; ?>
-
-  <div class="carousel slide">
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <img src="../medias/maréiel/nanon2.jpg" class="d-block w-100 welcome-image" alt="sdsdsdsdsdssdsd sdsd"
-          class="text-white">
-        <div class="carousel-caption d-none d-md-block">
-          <h1>Bienvenue sur lumectif</h1>
-          <h1>la référence du materiel audiovisuel</h1>
-          <a href="" class="link-text">Découvrir les produits<i class="fa fa-chevron-right ml-3"></i></a>
-        </div>
-      </div>
-    </div>
+<body>
+  <article class="d-md-flex d-bloc align-items-center p ">
+  <figure class="col-lg-8 col-md-5 col-10">
+    <img class="img-fluid" src="../medias/materiel/nanon2.jpg" alt="">
+  </figure>
+  <div class="f-poiretOne text-white w-md-50 w-100 d-flex flex-column ps-5 fs-1">
+    <p class="mb-5">Bienvenue sur lumectif </br>la reference du materiel audiovisuel</p>
+    <p class="mt-5">voir produit</p>
   </div>
+  </article>
 
-  <div class="d-flex flex-row bg-white mt-2">
-    <div class="w-50">
-      <div class="d-flex flex-column h-100">
-        <div class="text-justify text-card-description px-3 mt-2">
-          Une caméra est un appareil de prise de vues destiné à enregistrer ou à transmettre
-          des images photographiques successives afin de restituer l'impression de mouvement pour le cinéma,
-          la télévision, la recherche, la télésurveillance, l'imagerie industrielle et médicale, ou bien pour d'autres
-          applications, ...
-        </div>
-        <div class="mt-auto px-3"><a href="" class="link-text">Découvrir les produits<i
-              class="fa fa-chevron-right ml-3"></i></a></div>
-      </div>
-    </div>
-    <div class="w-50"><img src="../medias/maréiel/nanon2.jpg" class="card-image" alt="..."></div>
-  </div>
+  <article class="d-flex align-items-center bg-white">
 
-  <div class="d-flex flex-row background-dark text-white  mt-2">
-    <div class="w-50">
-      <div class="d-flex flex-column h-100">
-        <div class="text-justify text-card-description px-3 mt-2">
-          Une caméra est un appareil de prise de vues destiné à enregistrer ou à transmettre
-          des images photographiques successives afin de restituer l'impression de mouvement pour le cinéma,
-          la télévision, la recherche, la télésurveillance, l'imagerie industrielle et médicale, ou bien pour d'autres
-          applications, ...
-        </div>
-        <div class="mt-auto px-3"><a href="" class="link-text">Découvrir les produits<i
-              class="fa fa-chevron-right ml-3"></i></a></div>
-      </div>
-    </div>
-    <div class="w-50"><img src="../medias/maréiel/nanon2.jpg" class="card-image" alt="..."></div>
+  <div class="f-genos w-50 d-flex flex-column ps-5 fs-1">
+    <p class="mb-5">Bienvenue sur lumectif</p>
+    <p class="mt-5 fs-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae commodi atque omnis temporibus rerum perspiciatis odit dolor labore corrupti ab.</p>
   </div>
-  <div class="d-flex flex-row bg-white mt-2">
-    <div class="w-50">
-      <div class="d-flex flex-column h-100">
-        <div class="text-justify text-card-description px-3 mt-2">
-          Une caméra est un appareil de prise de vues destiné à enregistrer ou à transmettre
-          des images photographiques successives afin de restituer l'impression de mouvement pour le cinéma,
-          la télévision, la recherche, la télésurveillance, l'imagerie industrielle et médicale, ou bien pour d'autres
-          applications, ...
-        </div>
-        <div class="mt-auto px-3"><a href="" class="link-text">Découvrir les produits<i
-              class="fa fa-chevron-right ml-3"></i></a></div>
-      </div>
-    </div>
-    <div class="w-50"><img src="../medias/maréiel/nanon2.jpg" class="card-image" alt="..."></div>
-  </div>
+  <figure class="col-md-4 me-5">
+    <img class="img-fluid" src="../medias/materiel/light.jpeg" alt="">
+  </figure>
+  </article>
 
-  <?php include './composants/footer.php'; ?>
-  </main>
 </body>
-
-</html>

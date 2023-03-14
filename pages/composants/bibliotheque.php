@@ -42,6 +42,7 @@ echo '
 }
 function navBar (){
     /*affiche le nom de l'utilisateur dans la barre de navigation*/
+    $nbrEnrNotif = "";
     if(!isset($_SESSION['statut'])){
         $statutConect = "connexion";
         $statutConectLink = "connexion";
@@ -56,11 +57,34 @@ function navBar (){
             $tab = mysqli_fetch_array($resSQL);
             $statutConect = $tab['pseudo_ut'];
             $statutConectLink = "pageUtilisateur";
+
+            $utilisateur = $_SESSION['id_ut'];
+            $requeteNotif = "SELECT lum_achete.*
+            FROM `lum_article`
+            JOIN `lum_achete`
+            ON lum_article.id_a = lum_achete.id_a
+            JOIN `lum_utilisateur`
+            ON lum_achete.id_ut = lum_utilisateur.id_ut
+            WHERE lum_utilisateur.id_ut = $utilisateur";
+            $resSQLNotif = mysqli_query ($connect, $requeteNotif);
+            $tabNotif = mysqli_fetch_array($resSQLNotif);
+            $nbrEnrNotif = mysqli_num_rows ( $resSQLNotif );
         }
         else{
         $statutConect = "connexion";
         $statutConectLink = "connexion";
         }
+    }
+    if(isset($_SESSION['statut'])){
+        if($_SESSION['statut'] == true ){
+            $linkPan = "panier";
+        }
+        else{
+            $linkPan = "connexion";
+        }
+    }
+    else{
+        $linkPan = "connexion";
     }
     /*code HTML de la barre de navigation*/
     echo '<header>
@@ -76,7 +100,7 @@ function navBar (){
                     <ul class="itemNav">
                         <li class="user"><a href="'.$statutConectLink.'.php"><span id="connexion" class="me-2 f-genos fs-5">'.$statutConect.'</span><img src="../medias/icon/user.svg" alt=""></a></li>
                         <li class="like"><a href="#"><img src="../medias/icon/like.svg" alt=""></a></li>
-                        <li class="panier"><a href="#"><img src="../medias/icon/panier.svg" alt=""></a></li>
+                        <li class="panier"><a href="'.$linkPan.'.php"><img src="../medias/icon/panier.svg" alt=""> <span id="panierNotif">'.$nbrEnrNotif.'</span></a></li>
                     </ul>
             </nav>
     <!--===== nav bar du bas =====-->

@@ -62,7 +62,7 @@ htmlDebut("Lumectif-connexion");
                           </div>
                         </div>
                         <form action="panierSuppr.php" method="GET">
-                        <button name="panierSuppr" value="'.$tab['id_a'].'" class="btn btn-primary w-25 m-2">Supprimer</button>
+                        <button name="panierSuppr" value="'.$tab['commande_a'].'" class="btn btn-primary w-25 m-2">Supprimer</button>
                         </form>
                       </div>';
                     }
