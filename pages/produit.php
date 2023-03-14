@@ -10,6 +10,8 @@ include('composants/bibliotheque.php');
 htmlDebut("Lumectif-".$tab['nom_a']."");
 navBar();
 ?>
+
+
 <body>
     <section class="d-md-flex col-md-10 col-12 m-md-auto my-5 m-3 border-bottom border-4">
         <article class="d-flex align-items-center col-md-8">
@@ -132,7 +134,6 @@ navBar();
  WHERE lum_avis.id_a = $produit";
  $resSQL = mysqli_query ($connect, $requete);
  $nbrEnr = mysqli_num_rows ( $resSQL );
- var_dump($produit);
 
 for($num = 0; $num<$nbrEnr; $num++){
     $tab = mysqli_fetch_array($resSQL);
@@ -208,7 +209,7 @@ $noteTxt ="";
             <?php
     echo'<input type="text" class="d-none" name="produit" value="'.$_GET['idProduit'].'">';
             ?>
-            <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" name="avis" style="height: 100px"></textarea>
+            <textarea class="form-control w-100" placeholder="Leave a comment here" id="floatingTextarea2" name="avis" ></textarea>
             <label for="floatingTextarea2">Commentaire...</label>
         </div>
         <button type="submit" name="note" value="4" id="subAv" class="btn btn-primary btn-lg m-2">Envoyer</button>
