@@ -87,13 +87,16 @@ navBar();
                 <div class="accordion-body">
                   <div  id="note" class="d-flex justify-content-evenly">
                   </div>
+
+                  <!--Script étoile-->
                     <script>
-                        var content =""
+                        var content =""     /* ---> initialisation*/
                         var etat = "Vide"
+
                         for(i=0; i<5; i++){
-                            content = content+'<div class="fas fa-star over-star" onclick="note(this.id)" style="color:#4B5C35" id="'+i+'"></div>';
+                            content = content+'<div class="fas fa-star over-star" onclick="note(this.id)" style="color:#4B5C35" id="'+i+'"></div>';     /* ---> création de cinq étoiles*/
                         }
-                        function note(etoileId){
+                        function note(etoileId){                    /* ---> fonction du changement d'étoile*/
                                 var note = eval(etoileId) + 1;
                                 if (typeof(evaluer) == "undefined"){
                                     evaluer = false
@@ -132,6 +135,8 @@ navBar();
 <!--==== articles =====-->
 
     <article class="row justify-content-evenly col-lg-8 m-auto">
+
+    <!--Dynamisation des étoile-->
             <?php
 
 $connect = mysqli_connect('localhost','root','','lumectif') or die (mysqli_connect_error());
@@ -166,7 +171,7 @@ $connect = mysqli_connect('localhost','root','','lumectif') or die (mysqli_conne
                     else{
                         $promo = '<span class="fs-2">'.$prixArt.'€</span>';
                     };
-                    if(isset($note)){
+                    if(isset($note)){               /* ---> dynamisation des notes*/
                         for($n=0; $n<$note; $n++){
                             $noteTxt .= '<div class="fas fa-star" style="color: gold"></div>';
                         }
@@ -176,8 +181,8 @@ $connect = mysqli_connect('localhost','root','','lumectif') or die (mysqli_conne
                     }
                 echo '
                 <!--card-->
-                <div class="card mt-3" style="width: 18rem;">
-                  <a href="produit.php?idProduit='.$tab['id_a'].'&categorie='.$tab['id_ca'].'">
+                <div class="card m-3" style="width: 18rem;">
+                  <a href="produit.php?idProduit='.$tab['id_a'].'&categorie='.$tab['id_ca'].'&name='.$tab['nom_a'].'">
                       <img src="../medias/materiel/camera01.jpg" class="card-img-top" alt="...">
                       <div class="card-body border-top">
                           <div class="d-flex-column text-center f-genos">

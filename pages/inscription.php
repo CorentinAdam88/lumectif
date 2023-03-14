@@ -11,21 +11,12 @@ navBar();
 
           
         <div class="col">
-                <label for="lastName" class="form-label" id="nom" name="nom">Nom de famille</label>
+                <label for="lastName" class="form-label" id="nom" name="nom">Nom</label>
 
                 <input
                     type="text"
                     class="form-control"
                     placeholder="Prénom"
-                    aria-label="Last name">
-            </div>
-            <div class="col">
-                <label for="lastName" class="form-label" id="nom" name="nom">Nom de famille</label>
-
-                <input
-                    type="text"
-                    class="form-control"
-                    placeholder="Nom de famille"
                     aria-label="Last name">
             </div>
 

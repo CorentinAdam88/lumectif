@@ -45,12 +45,15 @@ navBar();
         <article class="col-lg-7 col-md-5 justify-content-center text-md-start text-center">
             <div class="f-genos">
                 <?php
+        /*Recuperation de la categorie de l'article selectionner*/
+        /*initialisation des variables depuis la requette en haut de page*/
                     $nameArt = $tab['nom_a'];
                     $prixArt = $tab['prix_a'];
                     $promoPour = $tab ['promo_a'];
                     $promo = "";
                     $prixPromo = 0;
                     $noteTxt = "";
+            /*calcule du prix en promotion ou non*/
                     if($promoPour != 0){
                         $prixPromo = ($prixArt-$prixArt*$promoPour/100);
                         $promo = '<h2 class="prix">'.$prixPromo.'€</h2>
@@ -60,22 +63,24 @@ navBar();
                         $promo = '<h2 class="prix">'.$prixArt.'€</h2>';
                     };
                     echo '<h2><a class="text-decoration-none text-muted m-0" href="#">camera</a></h2>
-                    <h1 class="fs-h1 m-0">'.$tab['nom_a'].'</h1>
+                    <h1 class="fs-h1 m-0">'.$_GET['name'].'</h1>
                     <div class="d-flex justify-content-md-start justify-content-center align-items-center">
                     '.$promo.'
                     </div>';
                     ?>
                     <div class="d-flex">
                     </div>
-
+                    
+            <!--Recuperation de l'id de l'article pour la mettre en valeur de bouton pour l'ajouter au panier-->
                     <?php
                         echo ' <form action="panierSecur.php" method="GET">
-                        <button type="submit" name="panier" value="'.$tab['id_a'].'" class="btn m-auto m-md-0 btn-success d-flex align-items-center f-genos fs-4 bg-green border-green">Ajouter au panier <span class="px-2"><a href="#"><img width="30px" src="../medias/icon/panier_blanc.svg" alt=""></a></span></button>
+                        <button type="submit" name="panier" value="'.$_GET['idProduit'].'" class="btn m-auto m-md-0 btn-success d-flex align-items-center f-genos fs-4 bg-green border-green">Ajouter au panier <span class="px-2"><a href="#"><img width="30px" src="../medias/icon/panier_blanc.svg" alt=""></a></span></button>
                         </form>';
                     ?>
 
                     <ul class="list-unstyled f-genos fs-2 d-flex flex-column">
                         <?php
+            /*verifier de quelle categorie est l'article pour pouvoir faire la requète des caractèristique */
                     if(isset($_GET['categorie'])){
                         $categorieSelec = $_GET['categorie'];
 
@@ -117,18 +122,98 @@ navBar();
     </section>
 
     <section>
+        <?php
+ $requete = "SELECT lum_utilisateur.pseudo_ut, lum_avis.* , lum_article.id_a
+ FROM lum_avis
+ JOIN lum_article
+ ON lum_article.id_a = lum_avis.id_ut
+ JOIN lum_utilisateur
+ ON lum_avis.id_ut = lum_utilisateur.id_ut
+ WHERE lum_avis.id_a = $produit";
+ $resSQL = mysqli_query ($connect, $requete);
+ $nbrEnr = mysqli_num_rows ( $resSQL );
+ var_dump($produit);
 
+for($num = 0; $num<$nbrEnr; $num++){
+    $tab = mysqli_fetch_array($resSQL);
+    $note = $tab['note_av'];
+
+    if(isset($note)){               /* ---> dynamisation des notes*/
+        for($n=0; $n<$note; $n++){
+            $noteTxt .= '<div class="fas fa-star" style="color: gold"></div>';
+        }
+        for($n=0; $n<5-$note; $n++){
+            $noteTxt .= '<div class="fas fa-star" style="color: #4B5C35;"></div>';
+        }
+    }
+echo'
         <!--Avis card-->
-    <div class="card">
-  <h5 class="card-header">Nocilex</h5>
-  <div class="card-body">
-    <h5 class="card-title">Special title treatment</h5>
-    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
+    <div class="card f-genos m-5 col-md-8 col-10 rounded-0">
+  <h5 class="card-header fs-2">'.$tab['pseudo_ut'].'</h5>
+  <div class="d-flex m-3">
+  '.$noteTxt.'
   </div>
-</div>
+  <div class="card-body">
 
+    <p class="card-text fs-3 m-0">'.$tab['avis_av'].'</p>
+    '.$produit.'
+  </div>
+</div>';
+$noteTxt ="";
+}
+?>
 
+        <form action="insertAv.php" class="m-5" method="GET">
+                    <div id="note">
+
+                    </div>
+
+                    <script>
+                        var content =""     /* ---> initialisation*/
+
+                        for(i=0; i<5; i++){
+                            content = content+'<div class="fas fa-star over-star m-2" onclick="note(this.id)" style="color:#4B5C35" id="'+i+'"></div>';     /* ---> création de cinq étoiles*/
+                        }
+                        function note(etoileId){                    /* ---> fonction du changement d'étoile*/
+                                var note = eval(etoileId) + 1;
+                                if (typeof(evaluer) == "undefined"){
+                                    evaluer = false
+                                }
+                                if(evaluer == false){
+                                    evaluer = true
+                                    for(n=0; n<note; n++){
+                                        document.getElementById(String(n)).style.color = "gold";
+                                    }
+                            }
+                            else{
+                                    for (n=0; n<5; n++){
+                                        document.getElementById(String(n)).style.color = "#4B5C35";
+                                    }
+                                    for(n=0; n<note; n++){
+                                        document.getElementById(String(n)).style.color = "gold";
+                                    }
+                                    
+                                }
+                                document.getElementById("subAv").value = note;
+                            console.log("ggg");
+                        }
+                        var Contenu = document.getElementById("note");
+                        Contenu.innerHTML= content;
+                    </script>
+                    <script>
+                        note("3");
+                    </script>
+
+        <div class="form-floating w-50">
+            <?php
+    echo'<input type="text" class="d-none" name="produit" value="'.$_GET['idProduit'].'">';
+            ?>
+            <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" name="avis" style="height: 100px"></textarea>
+            <label for="floatingTextarea2">Commentaire...</label>
+        </div>
+        <button type="submit" name="note" value="4" id="subAv" class="btn btn-primary btn-lg m-2">Envoyer</button>
+
+        </form>
     </section>
    
 </body>
