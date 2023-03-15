@@ -15,25 +15,28 @@ navBar();
 <body>
     <section class="d-md-flex col-md-10 col-12 m-md-auto my-5 m-3 border-bottom border-4">
         <article class="d-flex align-items-center col-md-8">
+        <?php
+        echo'
             <ul class="list-unstyled col-1 border-end border-1 pe-2">
                 <li>
-                    <figure onclick="imageArt('camera01.jpg')">
-                        <img class="w-100" src="../medias/materiel/camera01.jpg"  alt="">
+                    <figure onclick="imageArt('.$tab['image_a'].')">
+                        <img class="w-100" src="../medias/materiel/'.$tab['image_a'].'"  alt="">
                      </figure>
                 </li>
 
                 <li>
-                    <figure onclick="imageArt('objectif.jpg')">
+                    <figure onclick="imageArt(\'objectif.jpg\')">
                         <img class="w-100" src="../medias/materiel/objectif.jpg"  alt="">
                      </figure>
                 </li>
 
                 <li>
-                    <figure onclick="imageArt('light.jpeg')">
+                    <figure onclick="imageArt(\'light.jpeg\')">
                         <img class="w-100" src="../medias/materiel/light.jpeg" alt="">
                      </figure>
                 </li>
-            </ul>
+            </ul>';
+            ?>
             <figure class="col-md-12 col-sm-10 col-10 d-flex justify-content-center text-md-start">
                 <img id="imageCAT" class="col-md-8 col-lg-6 col-8 border border-1 p-2" src="" alt="">
             </figure>

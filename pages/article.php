@@ -125,6 +125,7 @@ navBar();
                                     console.log(note)
                                     
                                 }
+                                document.getElementById("submitForm").value = note;
                         }
                         var Contenu = document.getElementById("note");
                         Contenu.innerHTML= content;
@@ -133,7 +134,7 @@ navBar();
                 </div>
               </div>
               </div>
-            <button type="submit">submit</button>
+            <button id="submitForm" type="submit" name="note" value="">submit</button>
 
             </div>
           </div>
@@ -160,7 +161,12 @@ $connect = mysqli_connect('localhost','root','','lumectif') or die (mysqli_conne
                     $prixFiltre = $_GET['prix'];
                 }
 
-                $requete = "SELECT DISTINCT *
+                if(isset($_GET['note'])){
+                    $noteFiltre = $_GET['note'];
+                }
+
+
+                $requete = "SELECT *
                 FROM `lum_article`
                 LEFT JOIN `lum_avis`
                 ON lum_avis.id_a = lum_article.id_a
@@ -169,18 +175,44 @@ $connect = mysqli_connect('localhost','root','','lumectif') or die (mysqli_conne
                 LEFT JOIN `lum_propose`
                 ON lum_article.id_a = lum_propose.id_a
                 LEFT JOIN `lum_fabricant`
-                ON lum_propose.id_f = lum_fabricant.id_f";
+                ON lum_propose.id_f = lum_fabricant.id_f ";
 
                 if(isset($marqueFiltre)){
-                    $requete.=" AND lum_fabricant.id_f IN ($marqueFiltre)";
+                    if(isset($textRequete)){
+                        $textRequete = "AND lum_fabricant.id_f IN ($marqueFiltre)";
+                        $requete.= $textRequete;
+                    }
+                    else{
+                        $textRequete = "WHERE lum_fabricant.id_f IN ($marqueFiltre)";
+                        $requete.= $textRequete;
+                    }
                 }
 
                 if(isset($prixFiltre)){
                     if($prixFiltre!=""){
-                    $requete.=' WHERE lum_article.prix_a < '.$prixFiltre.'';
+                        var_dump(isset($textRequete) or isset($textRequeteNote));
+                        if(isset($textRequete) or isset($textRequeteNote)){
+                            $textRequetePrix = ' AND lum_article.prix_a < '.$prixFiltre.'';
+                            $requete.=$textRequetePrix;
+                        }
+                        else{
+                            $textRequetePrix = ' WHERE lum_article.prix_a < '.$prixFiltre.'';
+                            $requete.=$textRequetePrix;
+                        }
                 }
                 }
-
+                if(isset($noteFiltre) or isset($prixFiltre) or isset($marqueFiltre)){
+                    if($noteFiltre!=""){
+                        if(isset($textRequete) or isset($textRequetePrix)){
+                            $textRequeteNote = ' AND lum_avis.note_av >= '.$noteFiltre.'';
+                            $requete.=$textRequeteNote;
+                        }
+                        else{
+                            $textRequeteNote = ' WHERE lum_avis.note_av >= '.$noteFiltre.'';
+                            $requete.=$textRequeteNote;
+                        }
+                }
+                }
                 $resSQL = mysqli_query ($connect, $requete);
                 $nbrEnr = mysqli_num_rows ( $resSQL );
                 echo'<h2 class="text-muted f-genos">Il y\'a '.$nbrEnr.' articles selectionnés</h2>';
@@ -194,7 +226,6 @@ $connect = mysqli_connect('localhost','root','','lumectif') or die (mysqli_conne
                     $prixPromo = 0;
                     $note = $tab ['note_av'];
                     $noteTxt = "";
-
             /*=== DETECTION D'UNE PROMO AVEC ACIENNE ET NOUVELLE NOTE ===*/
                     if($promoPour != 0){
                         $prixPromo = ($prixArt-$prixArt*$promoPour/100);
@@ -215,7 +246,7 @@ $connect = mysqli_connect('localhost','root','','lumectif') or die (mysqli_conne
                 echo '
                 <div class="card m-3" style="width: 18rem;">
                   <a href="produit.php?idProduit='.$tab['id_a'].'&categorie='.$tab['id_ca'].'&name='.$tab['nom_a'].'">
-                      <img src="../medias/materiel/camera01.jpg" class="card-img-top" alt="...">
+                      <img src="../medias/materiel/'.$tab['image_a'].'" class="card-img-top" alt="...">
                       <div class="card-body border-top">
                           <div class="d-flex-column text-center f-genos">
                               <a href="#" class="text-muted text-decoration-none">'.$tab['titre_ca'].'</a>
@@ -225,7 +256,7 @@ $connect = mysqli_connect('localhost','root','','lumectif') or die (mysqli_conne
                               </div>
                               <ul class="d-flex list-none justify-content-evenly ">
                                   <li>
-                                      <a href="#"><img src="../medias/icon/like.svg" width="25px" height="25px" alt=""></a>
+                                      <a href="#"><img src="../medias/materiel/like.svg" width="25px" height="25px" alt=""></a>
                                   </li>
                                   <li>
                                       <a href="panierSecur.php?panier='.$tab['id_a'].'"><img src="../medias/icon/panier.svg" width="25px" height="25px" alt=""></a>
