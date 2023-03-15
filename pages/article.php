@@ -256,7 +256,7 @@ $connect = mysqli_connect('localhost','root','','lumectif') or die (mysqli_conne
                               </div>
                               <ul class="d-flex list-none justify-content-evenly ">
                                   <li>
-                                      <a href="#"><img src="../medias/materiel/like.svg" width="25px" height="25px" alt=""></a>
+                                      <a href="#"><img src="../medias/icon/like.svg" width="25px" height="25px" alt=""></a>
                                   </li>
                                   <li>
                                       <a href="panierSecur.php?panier='.$tab['id_a'].'"><img src="../medias/icon/panier.svg" width="25px" height="25px" alt=""></a>

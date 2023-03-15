@@ -1,8 +1,9 @@
 <!--===== navBar =====-->
 <?php
+$produit = intval($_GET['idProduit']);
 $connect = mysqli_connect('localhost','root','','lumectif') or die (mysqli_connect_error());
 $okcharset = mysqli_set_charset ($connect, 'utf8');
-$requete = "SELECT * FROM `lum_article` WHERE lum_article.id_a = 2";
+$requete = "SELECT * FROM `lum_article` WHERE lum_article.id_a = $produit";
 $resSQL = mysqli_query ($connect, $requete);
 $nbrEnr = mysqli_num_rows ( $resSQL );
 $tab = mysqli_fetch_array($resSQL);
@@ -19,7 +20,7 @@ navBar();
         echo'
             <ul class="list-unstyled col-1 border-end border-1 pe-2">
                 <li>
-                    <figure onclick="imageArt('.$tab['image_a'].')">
+                    <figure onclick="imageArt(\''.$tab['image_a'].'\')">
                         <img class="w-100" src="../medias/materiel/'.$tab['image_a'].'"  alt="">
                      </figure>
                 </li>
@@ -35,8 +36,8 @@ navBar();
                         <img class="w-100" src="../medias/materiel/light.jpeg" alt="">
                      </figure>
                 </li>
-            </ul>';
-            ?>
+            </ul>
+
             <figure class="col-md-12 col-sm-10 col-10 d-flex justify-content-center text-md-start">
                 <img id="imageCAT" class="col-md-8 col-lg-6 col-8 border border-1 p-2" src="" alt="">
             </figure>
@@ -45,7 +46,10 @@ navBar();
                     document.getElementById("imageCAT").src ="../medias/materiel/"+source+"";
                     console.log(document.getElementById("imageCAT").src);
                 }
+                document.getElementById("imageCAT").src ="../medias/materiel/'.$tab['image_a'].'";
             </script>
+            ';
+            ?>
         </article>
         <article class="col-lg-7 col-md-5 justify-content-center text-md-start text-center">
             <div class="f-genos">
@@ -106,7 +110,7 @@ navBar();
                         $requeteCat = "SELECT `column_name` FROM information_schema.columns WHERE `table_name` = '$categorieSQL'";
                         $resSQLCat = mysqli_query ($connect, $requeteCat);
                         $nbrEnrCat = mysqli_num_rows ( $resSQLCat );
-                        $produit = intval($_GET['idProduit']);
+
 
                         $requete = "SELECT $categorieSQL.* FROM $categorieSQL JOIN lum_article ON lum_article.id_a = $categorieSQL.id_a WHERE $categorieSQL.id_a = $produit";
                         $resSQL = mysqli_query ($connect, $requete);
