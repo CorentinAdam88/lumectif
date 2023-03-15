@@ -49,18 +49,11 @@ navBar();
                         $tab = mysqli_fetch_array($resSQL);
                         $nameFab = $tab['nom_f'];
                         echo '<div class="d-flex align-items-center form-check-inline">
-                        <input class="form-check-input mx-3 formFabInput'.$num.'" id="'.$nameFab.'" type="checkbox" id="inlineCheckbox1" name="'.$tab['id_f'].'">
+                        <input class="form-check-input mx-3 formFabInput'.$num.'" id="'.$nameFab.'" type="checkbox" id="inlineCheckbox1" name="marque[]" value="'.$tab['id_f'].'">
                         <label class="form-check-label f-genos fs-4" for="inlineCheckbox1">'.$nameFab.'</label>
                     </div>';
                 }
                     ?>
-
-                <script>/*
-                  const input = document.querySelector('.formFabInput2');
-                  input.addEventListener('change', function(){
-                    document.getElementById('formFab').submit();
-                  })*/
-                </script>
 
                 </div>
               </div>
@@ -80,7 +73,7 @@ navBar();
                       <!--= CONTENUE FILTRE PRIX =-->
                       <div class="input-group mb-3">
                         <span class="input-group-text">Prix max €</span>
-                        <input type="text" class="form-control" aria-label="Dollar amount (with dot and two decimal places)">
+                        <input type="text" class="form-control" aria-label="Dollar amount (with dot and two decimal places)"name="prix" >
                       </div>
                       
   
@@ -140,7 +133,7 @@ navBar();
                 </div>
               </div>
               </div>
-
+            <button type="submit">submit</button>
 
             </div>
           </div>
@@ -159,18 +152,38 @@ navBar();
 $connect = mysqli_connect('localhost','root','','lumectif') or die (mysqli_connect_error());
                 $okcharset = mysqli_set_charset ($connect, 'utf8');
                 $onOff = 0;
-                for ($n=1;$n<=count($_GET); $n++){
-                  if(isset($_GET[strval($n)])){
-              }
+
+                if(isset($_GET['marque'])){
+                    $marqueFiltre = implode(",",$_GET['marque']);
                 }
-                $requete = "SELECT lum_article.*, lum_avis.note_av, lum_categorie.titre_ca
+                if(isset($_GET['prix'])){
+                    $prixFiltre = $_GET['prix'];
+                }
+
+                $requete = "SELECT DISTINCT *
                 FROM `lum_article`
                 LEFT JOIN `lum_avis`
                 ON lum_avis.id_a = lum_article.id_a
                 JOIN `lum_categorie`
-                ON lum_categorie.id_ca = lum_article.id_ca";
+                ON lum_article.id_ca = lum_categorie.id_ca
+                LEFT JOIN `lum_propose`
+                ON lum_article.id_a = lum_propose.id_a
+                LEFT JOIN `lum_fabricant`
+                ON lum_propose.id_f = lum_fabricant.id_f";
+
+                if(isset($marqueFiltre)){
+                    $requete.=" AND lum_fabricant.id_f IN ($marqueFiltre)";
+                }
+
+                if(isset($prixFiltre)){
+                    if($prixFiltre!=""){
+                    $requete.=' WHERE lum_article.prix_a < '.$prixFiltre.'';
+                }
+                }
+
                 $resSQL = mysqli_query ($connect, $requete);
                 $nbrEnr = mysqli_num_rows ( $resSQL );
+                echo'<h2 class="text-muted f-genos">Il y\'a '.$nbrEnr.' articles selectionnés</h2>';
 
                 for ($num=1; $num <= $nbrEnr ; $num++){
                     $tab = mysqli_fetch_array($resSQL);
@@ -181,6 +194,7 @@ $connect = mysqli_connect('localhost','root','','lumectif') or die (mysqli_conne
                     $prixPromo = 0;
                     $note = $tab ['note_av'];
                     $noteTxt = "";
+
             /*=== DETECTION D'UNE PROMO AVEC ACIENNE ET NOUVELLE NOTE ===*/
                     if($promoPour != 0){
                         $prixPromo = ($prixArt-$prixArt*$promoPour/100);
