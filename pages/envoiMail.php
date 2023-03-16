@@ -26,5 +26,9 @@ else{
 
 <body>
     
+<?php
+    footer();
+    ?>
 </body>
+</html>
 

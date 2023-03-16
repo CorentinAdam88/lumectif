@@ -12,8 +12,6 @@ htmlDebut("Lumectif-".$tab['nom_a']."");
 navBar();
 ?>
 
-
-<body>
     <section class="d-md-flex col-md-10 col-12 m-md-auto my-5 m-3 border-bottom border-4">
         <article class="d-flex align-items-center col-md-8">
         <?php
@@ -21,13 +19,13 @@ navBar();
             <ul class="list-unstyled col-1 border-end border-1 pe-2">
                 <li>
                     <figure onclick="imageArt(\''.$tab['image_a'].'\')">
-                        <img class="w-100" src="../medias/materiel/'.$tab['image_a'].'"  alt="">
+                        <img class="w-100" src="../medias/materiel/'.$tab['image_a'].'"  alt="produit1">
                      </figure>
                 </li>
 
                 <li>
                     <figure onclick="imageArt(\'objectif.jpg\')">
-                        <img class="w-100" src="../medias/materiel/objectif.jpg"  alt="">
+                        <img class="w-100" src="../medias/materiel/objectif.jpg"  alt="produit 2">
                      </figure>
                 </li>
 
@@ -39,7 +37,7 @@ navBar();
             </ul>
 
             <figure class="col-md-12 col-sm-10 col-10 d-flex justify-content-center text-md-start">
-                <img id="imageCAT" class="col-md-8 col-lg-6 col-8 border border-1 p-2" src="" alt="">
+                <img id="imageCAT" class="col-md-8 col-lg-6 col-8 border border-1 p-2" src="" alt="produit3">
             </figure>
             <script>
                 function imageArt (source){
@@ -83,7 +81,7 @@ navBar();
             <!--Recuperation de l'id de l'article pour la mettre en valeur de bouton pour l'ajouter au panier-->
                     <?php
                         echo ' <form action="panierSecur.php" method="GET">
-                        <button type="submit" name="panier" value="'.$_GET['idProduit'].'" class="btn m-auto m-md-0 btn-success d-flex align-items-center f-genos fs-4 bg-green border-green">Ajouter au panier <span class="px-2"><a href="#"><img width="30px" src="../medias/icon/panier_blanc.svg" alt=""></a></span></button>
+                        <button type="submit" name="panier" value="'.$_GET['idProduit'].'" class="btn m-auto m-md-0 btn-success d-flex align-items-center f-genos fs-4 bg-green border-green">Ajouter au panier <span class="px-2"><img class="tailleIcon" src="../medias/icon/panier_blanc.svg" alt=""></span></button>
                         </form>';
                     ?>
 
@@ -126,8 +124,8 @@ navBar();
                         }
                 ?>
 <!--COLUMN_NAME-->
-            </div>
-        </article>
+
+
     </section>
 
     <section>
@@ -224,5 +222,8 @@ $noteTxt ="";
         </form>
     </section>
    
+    <?php
+    footer();
+    ?>
 </body>
 </html>

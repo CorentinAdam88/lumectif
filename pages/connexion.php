@@ -93,5 +93,8 @@ htmlDebut("Lumectif-connexion");
 </main>
 <!--===== Script Bootsrap =====-->
 <script src="../dist/js/bootstrap.min.js"></script>
+<?php
+    footer();
+    ?>
 </body>
-
+</html>

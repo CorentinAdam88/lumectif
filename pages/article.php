@@ -5,17 +5,26 @@
 <?php
 include('composants/bibliotheque.php');
 htmlDebut("Lumectif-article");
-navBar();
 ?>
-<body>
+    <?php
+    navBar();
+    ?>
 <!--===== carousel =====-->
 
 <!--===== BLOC ASTUCE =====-->
+<?php
+    $connect = mysqli_connect('localhost','root','','lumectif') or die (mysqli_connect_error());
+    $okcharset = mysqli_set_charset ($connect, 'utf8');
+    $requete = "SELECT * FROM `lum_astuce` ORDER BY rand()";
+    $resSQL = mysqli_query ($connect, $requete);
+    $nbrEnr = mysqli_num_rows ( $resSQL );
+    $tab = mysqli_fetch_array($resSQL);
+    echo'
 <section class="bg-black text-light p-5 f-genos">
     <h1>Le saviez vous ?</h1>
-    <p class="col-sm-16 col-md-6">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis accusantium natus laudantium quasi officia vero sapiente velit quod. Quas, nulla reprehenderit harum enim numquam ullam accusantium at recusandae animi in, a asperiores labore totam. Assumenda, a minima! Ipsam quisquam voluptate temporibus, voluptatum esse magni dolores nemo. Aliquam doloribus alias voluptates!</p>
-</section>
-
+    <p class="col-sm-16 col-md-6">'.$tab['texte_as'].'</p>
+</section>';
+?>
 <!--===== ARTICLE =====-->
 <section class="d-sm-bloc d-md-flex">
 
@@ -49,8 +58,8 @@ navBar();
                         $tab = mysqli_fetch_array($resSQL);
                         $nameFab = $tab['nom_f'];
                         echo '<div class="d-flex align-items-center form-check-inline">
-                        <input class="form-check-input mx-3 formFabInput'.$num.'" id="'.$nameFab.'" type="checkbox" id="inlineCheckbox1" name="marque[]" value="'.$tab['id_f'].'">
-                        <label class="form-check-label f-genos fs-4" for="inlineCheckbox1">'.$nameFab.'</label>
+                        <input class="form-check-input mx-3 formFabInput'.$num.'" id="'.$tab['id_f'].'" type="checkbox" name="marque[]" value="'.$tab['id_f'].'">
+                        <label class="form-check-label f-genos fs-4" for="'.$tab['id_f'].'">'.$nameFab.'</label>
                     </div>';
                 }
                     ?>
@@ -73,7 +82,7 @@ navBar();
                       <!--= CONTENUE FILTRE PRIX =-->
                       <div class="input-group mb-3">
                         <span class="input-group-text">Prix max €</span>
-                        <input type="text" class="form-control" aria-label="Dollar amount (with dot and two decimal places)"name="prix" >
+                        <input type="text" class="form-control" aria-label="Dollar amount (with dot and two decimal places)" name="prix">
                       </div>
                       
   
@@ -136,7 +145,7 @@ navBar();
             <button id="submitForm" type="submit" name="note" value="" class="btn btn-primary justify-content-center w-100 mt-1 f-genos fs-4">Filtrer</button>
 
             </div>
-          </div>
+
           </form>
     </article>
 
@@ -163,6 +172,9 @@ $connect = mysqli_connect('localhost','root','','lumectif') or die (mysqli_conne
                 if(isset($_GET['note'])){
                     $noteFiltre = $_GET['note'];
                 }
+                if(isset($_GET['categorie'])){
+                    $categorieFiltre = $_GET['categorie'];
+                }
 
 
                 $requete = "SELECT *
@@ -174,7 +186,9 @@ $connect = mysqli_connect('localhost','root','','lumectif') or die (mysqli_conne
                 LEFT JOIN `lum_propose`
                 ON lum_article.id_a = lum_propose.id_a
                 LEFT JOIN `lum_fabricant`
-                ON lum_propose.id_f = lum_fabricant.id_f ";
+                ON lum_propose.id_f = lum_fabricant.id_f
+";
+
 
                 if(isset($marqueFiltre)){
                     if(isset($textRequete)){
@@ -189,7 +203,6 @@ $connect = mysqli_connect('localhost','root','','lumectif') or die (mysqli_conne
 
                 if(isset($prixFiltre)){
                     if($prixFiltre!=""){
-                        var_dump(isset($textRequete) or isset($textRequeteNote));
                         if(isset($textRequete) or isset($textRequeteNote)){
                             $textRequetePrix = ' AND lum_article.prix_a < '.$prixFiltre.'';
                             $requete.=$textRequetePrix;
@@ -202,7 +215,7 @@ $connect = mysqli_connect('localhost','root','','lumectif') or die (mysqli_conne
                 }
                 if(isset($noteFiltre) or isset($prixFiltre) or isset($marqueFiltre)){
                     if($noteFiltre!=""){
-                        if(isset($textRequete) or isset($textRequetePrix)){
+                        if(isset($textRequete) or isset($textRequetePrix) or isset($textRequeteCat)){
                             $textRequeteNote = ' AND lum_avis.note_av >= '.$noteFiltre.'';
                             $requete.=$textRequeteNote;
                         }
@@ -212,6 +225,20 @@ $connect = mysqli_connect('localhost','root','','lumectif') or die (mysqli_conne
                         }
                 }
                 }
+
+                if(isset($categorieFiltre)){
+                    if($categorieFiltre!=""){
+                        if(isset($textRequete) or isset($textRequetePrix) or isset($textRequeteCat)){
+                            $textRequeteCat = ' AND lum_categorie.id_ca = '.$categorieFiltre.'';
+                            $requete.=$textRequeteCat;
+                        }
+                        else{
+                            $textRequeteCat = ' WHERE lum_categorie.id_ca = '.$categorieFiltre.'';
+                            $requete.=$textRequeteCat;
+                        }
+                }
+                }
+                $requete.=" ORDER BY rand()";
                 $resSQL = mysqli_query ($connect, $requete);
                 $nbrEnr = mysqli_num_rows ( $resSQL );
                 echo'<h2 class="text-muted f-genos">Il y\'a '.$nbrEnr.' articles selectionnés</h2>';
@@ -254,7 +281,7 @@ $connect = mysqli_connect('localhost','root','','lumectif') or die (mysqli_conne
                 <div class="card m-3" style="width: 18rem;">
                 <figure class="position-relative overflow-hidden ">
                   <a href="produit.php?idProduit='.$tab['id_a'].'&categorie='.$tab['id_ca'].'&name='.$tab['nom_a'].'">
-                      <img src="../medias/materiel/'.$tab['image_a'].'" class="card-img-top imageHover '.$classe.'" alt="...">
+                      <img src="../medias/materiel/'.$tab['image_a'].'" class="card-img-top imageHover '.$classe.'" alt="l\'image de '.$tab['image_a'].'">
                      '.$textRupture.'
                       </a>
                       </figure>
@@ -267,10 +294,10 @@ $connect = mysqli_connect('localhost','root','','lumectif') or die (mysqli_conne
                               </div>
                               <ul class="d-flex list-none justify-content-evenly ">
                                   <li>
-                                      <a href="#"><img src="../medias/icon/like.svg" width="25px" height="25px" alt=""></a>
+                                      <a href="#"><img src="../medias/icon/like.svg" class="tailleIcon" alt="icon like"></a>
                                   </li>
                                   <li>
-                                      <a href="panierSecur.php?panier='.$tab['id_a'].'"><img src="../medias/icon/panier.svg" width="25px" height="25px" alt=""></a>
+                                      <a href="panierSecur.php?panier='.$tab['id_a'].'"><img src="../medias/icon/panier.svg" class="tailleIcon" alt="icon panier"></a>
                                   </li>
                                   <li>
                                       '.$noteTxt.'
@@ -290,5 +317,8 @@ $connect = mysqli_connect('localhost','root','','lumectif') or die (mysqli_conne
 
 <!--===== Script Bootsrap =====-->
     <script src="../dist/js/bootstrap.min.js"></script>
+    <?php
+    footer();
+    ?>
 </body>
 </html>

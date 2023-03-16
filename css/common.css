@@ -58,9 +58,6 @@ font-family: 'Poiret One', cursive;
     background-repeat: no-repeat;
     background-attachment: fixed;
 }
-.flouter-img{
-    
-}
 .imageHover{
     transition: all 0.1s ease;
 
@@ -70,4 +67,16 @@ font-family: 'Poiret One', cursive;
 }
 .rupture{
     filter: blur(2px);
+}
+
+.tailleIcon{
+    height: 25px;
+    width: 25px;
+}
+
+.bg-photo{
+    background-image: url(../medias/background/bg-cam-connexion.webp);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }

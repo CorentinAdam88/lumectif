@@ -12,4 +12,8 @@ htmlDebut("Lumectif-connexion");
 <button class="px-3 py-1 btn btn-lg btn-primary my-4 f-genos fs-3 p-0 rounded-0 m-auto justify-content-center d-flex align-items-center" type="submit">deconnexion</button>
 </form>
 
+<?php
+    footer();
+    ?>
 </body>
+</html>

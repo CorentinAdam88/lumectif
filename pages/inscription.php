@@ -90,4 +90,8 @@ navBar();
         }
     </script>
 
+<?php
+    footer();
+    ?>
 </body>
+</html>

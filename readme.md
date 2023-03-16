@@ -12,35 +12,59 @@
 
 ## l'arborescense de Lumectif:
 
-* Lumectif
-  - pages
-    - composants
-            - bibliotheque
-    - index.php
-    - article.php
-    - produit.php
-    - astuce.php
-    - connexion.php
-    - connexionSecur.php
-    - contact.php
-    - decoSecur.php
-    - envoiMail.php
-    - inscription.php
-    - inscriptionSecur.php
-    - insertAv.php
-    - pageUtilisateur.php
-    - panier.php
-    - panierSecur.php
-    - resetMDP.php
-    - reserMdpSecur.php
-  - medias
-    - background
-    - icon
-    - materiel
-  - css
-    - barNav.css
-    - common.css
-  - dist
+***
+└── LUMECTIF/
+    ├── css/
+    │   └── scss /
+    │       ├── barNav.css
+    │       ├── common.css
+    │       ├── index.css
+    │       ├── perso.css
+    │       ├── perso.css.map
+    │       ├── perso.scss
+    │       └── produits.css
+    ├── dist/
+    │   └── medias/
+    │       ├── background
+    │       ├── icon
+    │       ├── materiel
+    │       └── readme
+    └── pages/
+        └── composants/
+            ├── bibliotheque.php
+            ├── étoiles.php
+            ├── footer.php
+            ├── article.html
+            ├── article.php
+            ├── astuce.php
+            ├── connexion.php
+            ├── connexionSecur.php
+            ├── contact.php
+            ├── decoSecur.php
+            ├── envoiMail.php
+            ├── index.php
+            ├── inscription.php
+            ├── inscriptionSecur.php
+            ├── insertAv.php
+            ├── modernite.php
+            ├── moderniteaveciconesadministration.php
+            ├── pageUtilisateur.php
+            ├── panier.php
+            ├── panierSecur.php
+            ├── paniersuppr.php
+            ├── produit.html
+            ├── produit.php
+            ├── resetMDP.php
+            ├── resetMdpSecu.php
+            ├── tarifs.php
+            ├── 404 Not Found.html
+            ├── BarNav.html
+            ├── bibli copy.css
+            ├── bibli copy.html
+            ├── bibli.css
+            ├── bibli.php
+            └── readme.md
+***
 
 ---
 ## Hebergement

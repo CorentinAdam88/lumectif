@@ -10,7 +10,6 @@ echo '
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>'.$titre.'</title>
     <meta name="author" content="ADAM Corentin / ANASS Chattah">
@@ -34,9 +33,7 @@ echo '
     <link rel="stylesheet" href="../css/barNav.css">
 </head>
 <body>
-    
-</body>
-</html>';
+';
 
 /*===== BARRE DE NAVIGATION =====*/
 }
@@ -91,23 +88,23 @@ function navBar (){
     <!--===== nav bar du haut =====-->
             <nav class="navHaut" id="navHautId">
                 <div class="navHautGauche">
-                    <div id="burger"> <img id="burgerImg" src="../medias/icon/burger.svg" alt=""></div>
+                    <div id="burger"> <img id="burgerImg" src="../medias/icon/burger.svg" alt="burgerMenu"></div>
                     <div class="logo">L</div>
                  </div>
-                <form class="formHaut" action="">
+                <form class="formHaut">
                     <input placeholder="Recherche" type="text">
                 </form>
                     <ul class="itemNav">
-                        <li class="user"><a href="'.$statutConectLink.'.php"><span id="connexion" class="me-2 f-genos fs-5">'.$statutConect.'</span><img src="../medias/icon/user.svg" alt=""></a></li>
-                        <li class="like"><a href="#"><img src="../medias/icon/like.svg" alt=""></a></li>
-                        <li class="panier"><a href="'.$linkPan.'.php"><img src="../medias/icon/panier.svg" alt=""> <span id="panierNotif">'.$nbrEnrNotif.'</span></a></li>
+                        <li class="user"><a href="'.$statutConectLink.'.php"><span id="connexion" class="me-2 f-genos fs-5">'.$statutConect.'</span><img src="../medias/icon/user.svg" alt="compte utilisateur"></a></li>
+                        <li class="like"><a href="#"><img src="../medias/icon/like.svg" alt="j\'aime"></a></li>
+                        <li class="panier"><a href="'.$linkPan.'.php"><img src="../medias/icon/panier.svg" alt="panier"> <span id="panierNotif">'.$nbrEnrNotif.'</span></a></li>
                     </ul>
             </nav>
     <!--===== nav bar du bas =====-->
             <nav class="navBas" id="navBasId">
                 <ul>
                     <li>
-                        <form class="formBas" action="">
+                        <form class="formBas">
                             <input placeholder="Recherche" type="text">
                         </form>
                     </li>
@@ -168,5 +165,23 @@ echo '<div class="bg-secondary position-fixed z-3 w-100 h-100 top-50 start-50 tr
   </script>
 </div>
 </div>';
+}
+
+function footer (){
+    echo'<footer class="bg-dark py-3 f-genos fs-3 px-5">
+    <ul class="list-none text-white d-flex justify-content-between">
+      <li>Auteur Corentin ADAM / ANASS Chattah</li>
+      <li>&copy Lumectif 2023</li>
+      <li>SAE 203 : Site web et Base de données</li>
+    </ul>
+    <ul class="list-none text-white d-flex justify-content-evenly fs-4">
+      <li><a class="text-white text-decoration-underline" href="index.php">accueil</a></li>
+      <li><a class="text-white text-decoration-underline" href="article.php">boutique</a></li>
+      <li><a class="text-white text-decoration-underline" href="astuce.php">astuce</a></li>
+      <li><a class="text-white text-decoration-underline" href="contact.php">contact</a></li>
+      <li><a class="text-white text-decoration-underline" href="conexion.php">connexion</a></li>
+    
+    </ul>
+    </footer>';
 }
 ?>
