@@ -97,8 +97,5 @@ htmlDebut("Lumectif-connexion");
             </div>
 
         </div>
-        <?php
-    footer();
-    ?>
 </body>
 </html>

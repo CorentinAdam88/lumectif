@@ -4,6 +4,92 @@
  * Copyright 2011-2022 The Bootstrap Authors
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
+/*parametre perso*/
+.input-border {
+  border-radius: 30px;
+}
+
+.icon {
+  min-width: 50px;
+}
+
+.sub-nav-color {
+  background-color: lightgrey;
+}
+
+.text-card-description {
+  font-size: 1.7em;
+}
+
+.body-background {
+  background-color: rgb(201, 200, 200);
+}
+
+
+.f-poiretOne{
+font-family: 'Poiret One', cursive;
+}
+
+.f-genos{
+  font-family: 'genos', sans-serif;
+}
+
+.fs-green{
+  color: #4B5C35;
+}
+.bg-green{
+  background-color: #4B5C35;
+}
+
+.border-green{
+  border-color: #4B5C35;
+}
+
+
+.car-h{
+  height: 500px;
+}
+
+.prix{
+  color: #4B5C35;
+  font-size: 4em;
+}
+
+.fs-h1{
+  font-size: 4em;
+}
+
+.bg-image-connexion{
+  background-image: url(../medias/background/bg-cam-connexion.webp);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+.imageHover{
+  transition: all 0.1s ease;
+
+}
+.imageHover:hover{
+  transform: scale(1.05);
+}
+.rupture{
+  filter: blur(2px);
+}
+
+.tailleIcon{
+  height: 25px;
+  width: 25px;
+}
+
+.bg-photo{
+  background-image: url(../medias/background/bg-index.webp);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  height: 800px;
+}
+/*fin param-perso*/
+
 :root,
 [data-bs-theme=light] {
   --bs-blue: #4B5C35;
@@ -7301,8 +7387,16 @@ textarea.form-control-lg {
   top: 0 !important;
 }
 
+.top-25 {
+  top: 25% !important;
+}
+
 .top-50 {
   top: 50% !important;
+}
+
+.top-75 {
+  top: 75% !important;
 }
 
 .top-100 {
@@ -7313,8 +7407,16 @@ textarea.form-control-lg {
   bottom: 0 !important;
 }
 
+.bottom-25 {
+  bottom: 25% !important;
+}
+
 .bottom-50 {
   bottom: 50% !important;
+}
+
+.bottom-75 {
+  bottom: 75% !important;
 }
 
 .bottom-100 {
@@ -7325,8 +7427,16 @@ textarea.form-control-lg {
   left: 0 !important;
 }
 
+.start-25 {
+  left: 25% !important;
+}
+
 .start-50 {
   left: 50% !important;
+}
+
+.start-75 {
+  left: 75% !important;
 }
 
 .start-100 {
@@ -7337,8 +7447,16 @@ textarea.form-control-lg {
   right: 0 !important;
 }
 
+.end-25 {
+  right: 25% !important;
+}
+
 .end-50 {
   right: 50% !important;
+}
+
+.end-75 {
+  right: 75% !important;
 }
 
 .end-100 {

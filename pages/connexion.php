@@ -94,7 +94,7 @@ htmlDebut("Lumectif-connexion");
 <!--===== Script Bootsrap =====-->
 <script src="../dist/js/bootstrap.min.js"></script>
 <?php
-    footer();
+    footer("position-absolute bottom-0 w-100");
     ?>
 </body>
 </html>

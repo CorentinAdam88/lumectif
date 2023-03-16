@@ -31,7 +31,7 @@ navBar();
 
 ?>
     <?php
-    footer();
+    footer("");
     ?>
 </body>
 </html>

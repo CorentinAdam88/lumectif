@@ -75,8 +75,9 @@ font-family: 'Poiret One', cursive;
 }
 
 .bg-photo{
-    background-image: url(../medias/background/bg-cam-connexion.webp);
+    background-image: url(../medias/background/bg-index.webp);
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
+    height: 800px;
 }

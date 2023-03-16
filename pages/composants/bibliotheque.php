@@ -167,8 +167,14 @@ echo '<div class="bg-secondary position-fixed z-3 w-100 h-100 top-50 start-50 tr
 </div>';
 }
 
-function footer (){
-    echo'<footer class="bg-dark py-3 f-genos fs-3 px-5">
+function footer ($position){
+    if(isset($position)){
+        $positionValue= $position;
+    }
+    else{
+        $positionValue ="";
+    }
+    echo'<footer class="bg-dark py-3 f-poiretOne fs-5 px-5 border-top border-light '.$positionValue.' ">
     <ul class="list-none text-white d-flex justify-content-between">
       <li>Auteur Corentin ADAM / ANASS Chattah</li>
       <li>&copy Lumectif 2023</li>

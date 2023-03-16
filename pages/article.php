@@ -318,7 +318,7 @@ $connect = mysqli_connect('localhost','root','','lumectif') or die (mysqli_conne
 <!--===== Script Bootsrap =====-->
     <script src="../dist/js/bootstrap.min.js"></script>
     <?php
-    footer();
+    footer("");
     ?>
 </body>
 </html>

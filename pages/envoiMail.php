@@ -27,7 +27,7 @@ else{
 <body>
     
 <?php
-    footer();
+    footer("position-absolute bottom-0 w-100");
     ?>
 </body>
 </html>

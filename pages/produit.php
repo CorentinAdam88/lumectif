@@ -223,7 +223,7 @@ $noteTxt ="";
     </section>
    
     <?php
-    footer();
+    footer("");
     ?>
 </body>
 </html>
