@@ -48,6 +48,12 @@ htmlDebut("Lumectif-connexion");
                         $promo = '<span class="fs-2">'.$prixArt.'€</span>';
                         $prixFinal +=$prixArt;
                     };
+                    if($tab['dispo_a'] == 0){
+                      $dispo = '<p class="text-danger">Rupture de stock</p>';
+                    }
+                    else{
+                        $dispo = '<p class="text-primary">En stock</p>';
+                    }
                         echo'<div class="card rounded-0 f-genos fs-4">
                         <div class="card-body d-flex">
                           <figure class="me-3">
@@ -56,7 +62,7 @@ htmlDebut("Lumectif-connexion");
                           <div class="d-flex justify-content-between w-100">
                             <div>
                               <h1 class="card-title fs-2">'.$tab['nom_a'].'</h1>
-                              <p class="text-primary">En stock</p>
+                            '.$dispo.'
                             </div>
                             <p class="card-text">'.$promo.'</p>
                           </div>

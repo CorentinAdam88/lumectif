@@ -134,7 +134,7 @@ navBar();
                 </div>
               </div>
               </div>
-            <button id="submitForm" type="submit" name="note" value="">submit</button>
+            <button id="submitForm" type="submit" name="note" value="" class="btn btn-primary justify-content-center">submit</button>
 
             </div>
           </div>
@@ -243,10 +243,22 @@ $connect = mysqli_connect('localhost','root','','lumectif') or die (mysqli_conne
                         }
                     }
         /*---CARTE DES ARTICLES---*/
+        if($tab['dispo_a'] == 0){
+            $textRupture = ' <div class="w-100 position-absolute top-50 start-30 bg-danger py-2 pointer-events-none text-white text-center f-genos fs-3 rounded-1 text-decoration-underline">rupture de stock</div>';
+            $classe = 'rupture';
+        }
+        else{
+            $textRupture ="";
+            $classe = '';
+        }
                 echo '
                 <div class="card m-3" style="width: 18rem;">
+                <figure class="position-relative overflow-hidden ">
                   <a href="produit.php?idProduit='.$tab['id_a'].'&categorie='.$tab['id_ca'].'&name='.$tab['nom_a'].'">
-                      <img src="../medias/materiel/'.$tab['image_a'].'" class="card-img-top" alt="...">
+                      <img src="../medias/materiel/'.$tab['image_a'].'" class="card-img-top imageHover '.$classe.'" alt="...">
+                     '.$textRupture.'
+                      </a>
+                      </figure>
                       <div class="card-body border-top">
                           <div class="d-flex-column text-center f-genos">
                               <a href="#" class="text-muted text-decoration-none">'.$tab['titre_ca'].'</a>
@@ -266,7 +278,6 @@ $connect = mysqli_connect('localhost','root','','lumectif') or die (mysqli_conne
                                   </li>
                               </ul>
                               </div>
-                            </a>
                         </div>';
                         }
 ?>

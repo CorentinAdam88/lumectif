@@ -111,9 +111,9 @@ function navBar (){
                             <input placeholder="Recherche" type="text">
                         </form>
                     </li>
-                    <li><a href="#">accueil</a></li>
+                    <li><a href="index.php">accueil</a></li>
                     <li><a href="article.php">shop</a></li>
-                    <li><a href="#">astuce</a></li>
+                    <li><a href="astuce.php">astuce</a></li>
                     <li><a href="#">contact</a></li>
                 </ul>
             </nav>

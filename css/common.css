@@ -97,3 +97,13 @@ font-family: 'Poiret One', cursive;
 .flouter-img{
     
 }
+.imageHover{
+    transition: all 0.1s ease;
+
+}
+.imageHover:hover{
+    transform: scale(1.05);
+}
+.rupture{
+    filter: blur(2px);
+}
