@@ -122,7 +122,6 @@ navBar();
                                     for(n=0; n<note; n++){
                                         document.getElementById(String(n)).style.color = "gold";/* ---> changement couleur*/
                                     }
-                                    console.log(note)
                                     
                                 }
                                 document.getElementById("submitForm").value = note;
@@ -134,7 +133,7 @@ navBar();
                 </div>
               </div>
               </div>
-            <button id="submitForm" type="submit" name="note" value="" class="btn btn-primary justify-content-center">submit</button>
+            <button id="submitForm" type="submit" name="note" value="" class="btn btn-primary justify-content-center w-100 mt-1 f-genos fs-4">Filtrer</button>
 
             </div>
           </div>

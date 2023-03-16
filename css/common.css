@@ -2,16 +2,8 @@
     border-radius: 30px;
 }
 
-.font-family-messiri {
-    font-family: 'El Messiri', sans-serif;
-}
-
 .icon {
     min-width: 50px;
-}
-
-.icon:hover {
-    color: blue;
 }
 
 .sub-nav-color {
@@ -26,26 +18,6 @@
     background-color: rgb(201, 200, 200);
 }
 
-.link-text {
-    font-size: 1.4em;
-}
-
-.background-dark {
-    background-color: rgb(0, 0, 0);
-}
-
-.stroke {
-    text-decoration: line-through
-}
-
-.checked {
-    color: orange;
-}
-
-.flex {
-    display: flex;
-    flex-wrap: wrap;
-}
 
 .f-poiretOne{
 font-family: 'Poiret One', cursive;
@@ -53,11 +25,6 @@ font-family: 'Poiret One', cursive;
 
 .f-genos{
     font-family: 'genos', sans-serif;
-}
-
-.list-none{
-    list-style: none;
-    padding: 0px;
 }
 
 .fs-green{
@@ -71,9 +38,6 @@ font-family: 'Poiret One', cursive;
     border-color: #4B5C35;
 }
 
-.over-star:hover{
-    color: gold;
-}
 
 .car-h{
     height: 500px;
@@ -89,7 +53,7 @@ font-family: 'Poiret One', cursive;
 }
 
 .bg-image-connexion{
-    background-image: url(../medias/background/bg-cam-connexion.jpg);
+    background-image: url(../medias/background/bg-cam-connexion.webp);
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
